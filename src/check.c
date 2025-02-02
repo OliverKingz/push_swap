@@ -6,51 +6,49 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 18:22:44 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/02/02 18:24:10 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/02/02 21:03:15 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int arg_is_int(int argc, char **args)
+int	check_args_int(char **args)
 {
-	int i;
+	int	i;
 
-	if (argc <= 1 || args == NULL)
-		return (ft_putstr_fd("Error: no arg provided\n", 2), 0);
+	if (args == NULL || *args == NULL)
+		return (0);
 	i = 0;
-	while (i < argc - 1)
+	while (args[i] != NULL)
 	{
 		if (!ft_issigned_nbr(args[i]))
-			return (ft_putstr_fd("Error: arg is not a number\n", 2), 0);
+			return (free_strarray(args), ft_err("Arg is not valid number"), 0);
 		i++;
 	}
 	return (1);
 }
 
-int	arg_is_int_dup(int argc, char **args)
+int	check_args_dup(char **args)
 {
 	int i;
 	int j;
 	int *args_int;
+	int	arg_len;
 
-	if (argc <= 1 || args == NULL)
-		return (ft_putstr_fd("Error: no arg provided\n", 2), 0);
+	if (args == NULL || *args == NULL)
+		return (0);
 	args_int = ft_strarray_to_intarray(args);
 	if (args_int == NULL)
-		return (ft_putstr_fd("Error: memory allocation failed\n", 2), 0);
+		return (ft_err("Failed to malloc"), 0);
+	arg_len = ft_strarray_len(args);
 	i = 0;
-	while (i < argc - 1)
+	while (i < arg_len)
 	{
 		j = i + 1;
-		while (args_int[j] < argc - 1)
+		while (j < arg_len)
 		{
 			if (args_int[i] == args_int[j])
-			{
-				free(args_int);
-				ft_putstr_fd("Error: arg is duplicated\n", 2);
-				return (0);
-			}
+				return (free(args_int), ft_err("Arg is duplicated"), 0);
 			j++;
 		}
 		i++;
