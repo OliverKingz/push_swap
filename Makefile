@@ -6,7 +6,7 @@
 #    By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/25 20:01:56 by ozamora-          #+#    #+#              #
-#    Updated: 2025/01/30 15:52:32 by ozamora-         ###   ########.fr        #
+#    Updated: 2025/02/02 19:07:14 by ozamora-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,8 +28,8 @@ INC_FILES := push_swap
 
 # GENERAL FILES
 SRCS    := $(SRC_FILES)
-OBJS    := $(addprefix $(OBJ_DIR), $(notdir $(SRC_FILES:.c=.o)))
-DEPS    := $(addprefix $(OBJ_DIR), $(notdir $(SRC_FILES:.c=.d)))
+OBJS    := $(SRCS:$(SRC_DIR)%.c=$(OBJ_DIR)%.o)
+DEPS    := $(SRCS:$(SRC_DIR)%.c=$(OBJ_DIR)%.d)
 INCS    := $(addprefix $(INC_DIR), $(addsuffix .h, $(INC_FILES)))
 INCS	+= $(LIBFT_INC_DIR)libft.h
 
@@ -60,19 +60,20 @@ CLEAR_LINE = \033[2K
 
 # **************************************************************************** #
 # RULES
--include $(DEPS)
 
 # Default rule to create the program
 all: libft $(NAME)
 
 # Rule to compile object files from source files
-$(OBJ_DIR)%.o: $(SRC_DIR)%.c
+$(OBJ_DIR):
+	@mkdir -p $(OBJ_DIR)
+$(OBJ_DIR)%.o: $(SRC_DIR)%.c | $(OBJ_DIR)
 	@mkdir -p $(dir $@)
 	@printf "%b" "$(CLEAR_LINE)$(BOLD_BLUE)[ozamora-'s push_swap]:\t$(DEF_COLOR)$<\r"
 	@$(CC) $(CFLAGS) $(IFLAGS) -c $< -o $@
 
 # Rule to create the program
-$(NAME): $(LIBFT) $(OBJS)
+$(NAME): $(OBJS) $(LIBFT)
 	@$(CC) $(CFLAGS) $(IFLAGS) $(OBJS) $(LDFLAGS) -o $(NAME) 
 	@printf "%b" "$(CLEAR_LINE)$(BOLD_BLUE)[ozamora-'s push_swap]:\t" \
 		"$(DEF_COLOR)$(BOLD_GREEN)COMPILED$(DEF_COLOR)"
@@ -90,7 +91,7 @@ $(LIBFT):
 
 # Rule to clean generated files
 clean:
-	@rm -rf $(OBJ_DIR)
+	@rm -rf $(OBJ_DIR)/*.o $(OBJ_DIR)/*.d
 	@$(MAKE) clean -sC $(LIBFT_DIR)
 	@printf "%b" "$(CLEAR_LINE)$(BOLD_BLUE)[ozamora-'s push_swap]:\t" \
 		"$(DEF_COLOR)$(BOLD_RED)OBJECTS CLEANED$(DEF_COLOR)\n"
@@ -146,7 +147,8 @@ info:
 valgrind: $(NAME)
 	@valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./$(NAME)
 
-# Phony targets
+-include $(DEPS)
 .PHONY: all clean fclean re norm show info
+.DEFAULT_GOAL := all
 
 # **************************************************************************** #
