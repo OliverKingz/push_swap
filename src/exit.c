@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 18:23:38 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/02/02 20:19:09 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/02/03 02:53:09 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,9 @@ void	ft_err(const char *msg)
 
 void	free_strarray(char **strarray)
 {
-	int i = 0;
+	int	i;
+
+	i = 0;
 	while (strarray[i] != NULL)
 	{
 		free(strarray[i]);

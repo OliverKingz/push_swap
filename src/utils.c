@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 18:43:08 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/02/02 20:58:48 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/02/03 02:50:57 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 void	print_strarray(char **strarray)
 {
-	int i = 0;
+	int	i;
+
+	i = 0;
 	while (strarray[i] != NULL)
 	{
 		ft_printf("%s\n", strarray[i]);
@@ -24,7 +26,9 @@ void	print_strarray(char **strarray)
 
 void	print_intarray(int *intarray, int size)
 {
-	int i = 0;
+	int	i;
+
+	i = 0;
 	while (i < size)
 	{
 		ft_printf("%d\n", intarray[i]);
@@ -34,22 +38,26 @@ void	print_intarray(int *intarray, int size)
 
 int	ft_strarray_len(char **strarray)
 {
-	int size = 0;
-	while (strarray[size] != NULL) {
+	int	size;
+
+	size = 0;
+	while (strarray[size] != NULL)
+	{
 		size++;
 	}
-	return size;
+	return (size);
 }
+
 /**
- * @brief Allocates and returns a new string which is the result of the 
+ * @brief Allocates and returns a new string which is the result of the
  * concatenation of 's1', 'c', and 's2'.
  * @param s1 The first string. If NULL, it is treated as an empty string.
- * @param s2 The second string to append to 's1'. If NULL, it is treated as an 
+ * @param s2 The second string to append to 's1'. If NULL, it is treated as an
  * empty string.
  * @param c The character to insert between 's1' and 's2'.
- * @return A pointer to the newly allocated concatenated string, or NULL if 
+ * @return A pointer to the newly allocated concatenated string, or NULL if
  * memory allocation fails.
- * @note The function uses malloc, so the caller is responsible for freeing the 
+ * @note The function uses malloc, so the caller is responsible for freeing the
  * returned string when it is no longer needed.
  */
 char	*ft_strjoin_char(char const *s1, char const *s2, char c)
@@ -84,7 +92,6 @@ char	*ft_strjoin_char(char const *s1, char const *s2, char c)
 // 	int	max_p;
 // 	int	sort;
 // }	t_node;
-
 
 /* void	init_stack(t_node **stack, int size, char **argv)
 {

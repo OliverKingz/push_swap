@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 18:22:44 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/02/02 21:03:15 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/02/03 02:49:11 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,16 +30,16 @@ int	check_args_int(char **args)
 
 int	check_args_dup(char **args)
 {
-	int i;
-	int j;
-	int *args_int;
+	int	i;
+	int	j;
+	int	*args_int;
 	int	arg_len;
 
 	if (args == NULL || *args == NULL)
 		return (0);
 	args_int = ft_strarray_to_intarray(args);
 	if (args_int == NULL)
-		return (ft_err("Failed to malloc"), 0);
+		return (ft_err("Failed to convert args to int array"), 0);
 	arg_len = ft_strarray_len(args);
 	i = 0;
 	while (i < arg_len)
