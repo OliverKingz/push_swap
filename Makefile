@@ -6,7 +6,7 @@
 #    By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/25 20:01:56 by ozamora-          #+#    #+#              #
-#    Updated: 2025/02/02 23:55:34 by ozamora-         ###   ########.fr        #
+#    Updated: 2025/02/03 17:37:52 by ozamora-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,22 +21,22 @@ LIBFT_INC_DIR	:= $(LIBFT_DIR)inc/
 
 # **************************************************************************** #
 # FILES
-SRC_FILES := $(wildcard $(SRC_DIR)*.c)
+SRC_FILES	:= $(wildcard $(SRC_DIR)*.c)
 
 # INCLUDE FILES
-INC_FILES := push_swap
+INC_FILES	:= push_swap
 
 # GENERAL FILES
-SRCS    := $(SRC_FILES)
-OBJS    := $(SRCS:$(SRC_DIR)%.c=$(OBJ_DIR)%.o)
-DEPS    := $(SRCS:$(SRC_DIR)%.c=$(OBJ_DIR)%.d)
-INCS    := $(addprefix $(INC_DIR), $(addsuffix .h, $(INC_FILES)))
+SRCS	:= $(SRC_FILES)
+OBJS	:= $(SRCS:$(SRC_DIR)%.c=$(OBJ_DIR)%.o)
+DEPS	:= $(SRCS:$(SRC_DIR)%.c=$(OBJ_DIR)%.d)
+INCS	:= $(addprefix $(INC_DIR), $(addsuffix .h, $(INC_FILES)))
 INCS	+= $(LIBFT_INC_DIR)libft.h
 
 # **************************************************************************** #
 # PROJECT
-NAME  := push_swap
-LIBFT := $(LIBFT_DIR)libft.a
+NAME	:= push_swap
+LIBFT	:= $(LIBFT_DIR)libft.a
 
 # **************************************************************************** #
 # COMPILER
@@ -50,13 +50,13 @@ LDFLAGS	:= -L$(LIBFT_DIR) -lft
 # **************************************************************************** #
 # COLOURS
 
-BOLD_RED   = \033[1;31m
-BOLD_GREEN = \033[1;32m
-BOLD_BLUE  = \033[1;34m
+BOLD_RED	= \033[1;31m
+BOLD_GREEN	= \033[1;32m
+BOLD_BLUE	= \033[1;34m
 BOLD_YELLOW	= \033[1;33m
 
-DEF_COLOR  = \033[0;39m
-CLEAR_LINE = \033[2K
+DEF_COLOR	= \033[0;39m
+CLEAR_LINE	= \033[2K
 
 # **************************************************************************** #
 # RULES

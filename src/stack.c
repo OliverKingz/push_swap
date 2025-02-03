@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 23:54:59 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/02/03 02:51:15 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/02/03 19:17:35 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,16 @@ t_stack	*create_stack(char **args)
 
 	args_int = ft_strarray_to_intarray(args);
 	if (!args_int)
+	{
+		free_strarray(args);
 		return (ft_err("Failed to convert args to int array"), NULL);
+	}
 	stack = init_stack();
 	if (!stack)
-		return (free(args_int), ft_err("Failed to init stack"), NULL);
+	{
+		(free_strarray(args), free(args_int));
+		return (ft_err("Failed to init stack"), NULL);
+	}
 	i = ft_strarray_len(args) - 1;
 	while (i >= 0)
 	{
@@ -31,6 +37,7 @@ t_stack	*create_stack(char **args)
 		i--;
 	}
 	free(args_int);
+	free_strarray(args);
 	return (stack);
 }
 

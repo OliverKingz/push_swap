@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 18:22:44 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/02/03 02:49:11 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/02/03 18:31:07 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,27 @@ int	check_args_dup(char **args)
 	}
 	free(args_int);
 	return (1);
+}
+
+int	check_stack_sorted(t_stack *a)
+{
+	t_dnode	*current;
+	int		sorted;
+
+	if (a->size >= 2)
+	{
+		sorted = 1;
+		current = a->head;
+		while (current->next != NULL)
+		{
+			if (current->value > current->next->value)
+			{
+				sorted = sorted * 0;
+				break ;
+			}
+			current = current->next;
+		}
+		return (sorted);
+	}
+	return (ft_printf("Stack empty or with very few values"), 0);
 }

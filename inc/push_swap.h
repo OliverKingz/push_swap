@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 16:17:14 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/02/03 02:54:29 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/02/03 18:24:45 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ Functions used from libft:
 - ft_atol
 - ft_strdup
 - ft_strjoin_char
+- ft_strcmp
 */
 
 typedef struct s_dnode
@@ -42,6 +43,12 @@ typedef struct s_stack
 	int				size;
 }					t_stack;
 
+void				sort(t_stack *a);
+void				sort2(t_stack *a);
+void				sort3(t_stack *a);
+void				sort4(t_stack *a);
+void				sort5(t_stack *a);
+
 t_stack				*create_stack(char **args);
 t_stack				*init_stack(void);
 t_dnode				*init_dnode(int value);
@@ -50,6 +57,8 @@ void				print_stack(t_stack *stack);
 
 void				push(t_stack *stack, int value);
 int					pop(t_stack *stack);
+void				exe_op(t_stack *a, t_stack *b, const char *operation);
+void				exe_print_op(t_stack *a, t_stack *b, const char *operation);
 
 void				sa(t_stack *a);
 void				sb(t_stack *b);
@@ -72,6 +81,7 @@ long				*ft_strarray_to_longarray(char **str);
 
 int					check_args_int(char **args);
 int					check_args_dup(char **args);
+int					check_stack_sorted(t_stack *a);
 
 void				ft_err(const char *msg);
 void				free_strarray(char **strarray);
@@ -79,6 +89,5 @@ void				free_strarray(char **strarray);
 void				print_strarray(char **strarray);
 void				print_intarray(int *intarray, int size);
 int					ft_strarray_len(char **strarray);
-char				*ft_strjoin_char(char const *s1, char const *s2, char c);
 
 #endif
