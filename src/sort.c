@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 16:22:47 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/02/03 19:03:02 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/02/03 20:13:35 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,12 @@ void	sort2(t_stack *a)
 
 // This function sorts a stack of size 3 in ascending order
 // There are 6 possible cases to consider:
-// 1. 1 2 3 (already sorted)
-// 2. 1 3 2 (first case)
-// 3. 2 1 3
-// 4. 2 3 1
-// 5. 3 1 2
-// 6. 3 2 1 (last case)
+// - 1 2 3 (already sorted)
+// - 1 3 2 (first case)
+// - 2 1 3
+// - 2 3 1
+// - 3 1 2
+// - 3 2 1 (last case)
 void	sort3(t_stack *a)
 {
 	int	first;
@@ -47,26 +47,20 @@ void	sort3(t_stack *a)
 	first = a->head->value;
 	second = a->head->next->value;
 	third = a->head->next->next->value;
-	if (first > second && second < third && first < third) //2 1 3
+	if (first < second && second > third && first < third)
 	{
 		exe_print_op(a, NULL, "sa");
+		exe_print_op(a, NULL, "ra");
 	}
-	else if (first > second && second > third && first > third) // 3 2 1
-	{
+	else if (first > second && second < third && first < third)
 		exe_print_op(a, NULL, "sa");
+	else if (first < second && second > third && first > third)
 		exe_print_op(a, NULL, "rra");
-	}
-	else if (first > second && second < third && first > third)//3 1 2
-	{
+	else if (first > second && second < third && first > third)
 		exe_print_op(a, NULL, "ra");
-	}
-	else if (first < second && second > third && first < third)//1 3 2
+	else if (first > second && second > third && first > third)
 	{
 		exe_print_op(a, NULL, "sa");
-		exe_print_op(a, NULL, "ra");
-	}
-	else if (first < second && second > third && first > third)//2 3 1
-	{
 		exe_print_op(a, NULL, "rra");
 	}
 }

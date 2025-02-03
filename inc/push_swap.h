@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 16:17:14 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/02/03 18:24:45 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/02/03 19:59:58 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,6 @@ void				sort5(t_stack *a);
 t_stack				*create_stack(char **args);
 t_stack				*init_stack(void);
 t_dnode				*init_dnode(int value);
-void				free_stack(t_stack *stack);
-void				print_stack(t_stack *stack);
 
 void				push(t_stack *stack, int value);
 int					pop(t_stack *stack);
@@ -85,9 +83,12 @@ int					check_stack_sorted(t_stack *a);
 
 void				ft_err(const char *msg);
 void				free_strarray(char **strarray);
+void				free_stack(t_stack *stack);
+void				free_stacks(t_stack *a, t_stack *b);
 
 void				print_strarray(char **strarray);
 void				print_intarray(int *intarray, int size);
+void				print_stack(t_stack *stack);
 int					ft_strarray_len(char **strarray);
 
 #endif

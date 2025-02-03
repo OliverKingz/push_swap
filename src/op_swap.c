@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 23:54:21 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/02/03 02:52:00 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/02/03 20:06:23 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ void	sa(t_stack *a)
 		a->head = a->head->next;
 		aux->next = a->head->next;
 		a->head->next = aux;
+		a->head->prev = NULL;
+		aux->prev = a->head;
 	}
 }
 
@@ -58,6 +60,8 @@ void	sb(t_stack *b)
 		b->head = b->head->next;
 		aux->next = b->head->next;
 		b->head->next = aux;
+		b->head->prev = NULL;
+		aux->prev = b->head;
 	}
 }
 
