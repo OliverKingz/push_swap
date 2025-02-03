@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 23:54:29 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/02/03 02:48:45 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/02/03 20:46:12 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,13 @@
  * @param a The destination stack.
  * @param b The source stack.
  */
-void	pa(t_stack *a, t_stack *b);
+void	pa(t_stack *a, t_stack *b)
+{
+	if (b->size != 0)
+	{
+		push(a, pop(b));
+	}
+}
 
 /**
  * @brief Pushes the top element from stack a to stack b.
@@ -32,16 +38,6 @@ void	pa(t_stack *a, t_stack *b);
  * @param a The source stack.
  * @param b The destination stack.
  */
-void	pb(t_stack *a, t_stack *b);
-
-void	pa(t_stack *a, t_stack *b)
-{
-	if (b->size != 0)
-	{
-		push(a, pop(b));
-	}
-}
-
 void	pb(t_stack *a, t_stack *b)
 {
 	if (a->size != 0)

@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 18:23:38 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/02/03 19:59:12 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/02/03 20:26:13 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ void	free_stack(t_stack *stack)
 	t_dnode	*current;
 	t_dnode	*next;
 
+	if (!stack)
+		return;
 	current = stack->head;
 	while (current != NULL)
 	{

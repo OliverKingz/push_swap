@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 23:54:32 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/02/03 02:52:35 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/02/03 20:46:49 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,27 +19,6 @@
  *
  * @param a The stack to rotate.
  */
-void	ra(t_stack *a);
-
-/**
- * @brief Shifts all the elements of the stack b up by one position.
- *
- * The first element becomes the last.
- *
- * @param b The stack to rotate.
- */
-void	rb(t_stack *b);
-
-/**
- * @brief Performs ra and rb at the same time.
- *
- * Shifts all the elements of both stacks up by one position.
- *
- * @param a The first stack to rotate.
- * @param b The second stack to rotate.
- */
-void	rr(t_stack *a, t_stack *b);
-
 void	ra(t_stack *a)
 {
 	t_dnode	*new_tail;
@@ -58,6 +37,13 @@ void	ra(t_stack *a)
 	}
 }
 
+/**
+ * @brief Shifts all the elements of the stack b up by one position.
+ *
+ * The first element becomes the last.
+ *
+ * @param b The stack to rotate.
+ */
 void	rb(t_stack *b)
 {
 	t_dnode	*new_tail;
@@ -76,6 +62,14 @@ void	rb(t_stack *b)
 	}
 }
 
+/**
+ * @brief Performs ra and rb at the same time.
+ *
+ * Shifts all the elements of both stacks up by one position.
+ *
+ * @param a The first stack to rotate.
+ * @param b The second stack to rotate.
+ */
 void	rr(t_stack *a, t_stack *b)
 {
 	ra(a);

@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 01:33:46 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/02/03 19:19:27 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/02/03 20:34:07 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,11 @@ void	push(t_stack *stack, int value)
 
 	new = init_dnode(value);
 	if (!new)
-		(free_stack(stack), ft_err("Failed to initialize the node"));
+	{
+		free_stack(stack);
+		ft_err("Failed to initialize the node");
+		return ;
+	}
 	new->next = stack->head;
 	if (stack->size == 0)
 	{

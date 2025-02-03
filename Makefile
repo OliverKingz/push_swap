@@ -6,7 +6,7 @@
 #    By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/25 20:01:56 by ozamora-          #+#    #+#              #
-#    Updated: 2025/02/03 17:37:52 by ozamora-         ###   ########.fr        #
+#    Updated: 2025/02/03 20:38:54 by ozamora-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,7 +43,7 @@ LIBFT	:= $(LIBFT_DIR)libft.a
 CC		:= cc
 CFLAGS	:= -Wall -Wextra -Werror
 CFLAGS	+= -MMD -MP
-CFLAGS	+= -g3 -fsanitize=address
+#CFLAGS	+= -g3 -fsanitize=address
 IFLAGS	:= -I$(INC_DIR) -I$(LIBFT_INC_DIR)
 LDFLAGS	:= -L$(LIBFT_DIR) -lft
 
@@ -59,7 +59,7 @@ DEF_COLOR	= \033[0;39m
 CLEAR_LINE	= \033[2K
 
 # **************************************************************************** #
-# RULES
+# ESSENTIAL RULES
 
 # Default rule to create the program
 all: libft $(NAME)
@@ -108,6 +108,8 @@ fclean:
 re: fclean all
 
 # **************************************************************************** #
+# PERSONAL RULES
+
 # Rule to check if the files pass norminette
 norm:
 	@norminette $(SRCS) $(INCS)
@@ -144,11 +146,19 @@ info:
 	@echo "$(BOLD_BLUE)INCS: $(DEF_COLOR)$(INCS)"
 	@echo "$(BOLD_YELLOW)\nBonus:$(DEF_COLOR)"
 
-valgrind: $(NAME)
-	@valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./$(NAME)
+# Rule to compile object files from source files with debug flags
+debug: CFLAGS += -g3 -fsanitize=address
+debug: clean all
+	@echo "$(BOLD_YELLOW)[DEBUG MODE]$(DEF_COLOR)"
+
+# Rule to compile with valgrind debug flags
+valgrind: CFLAGS += -g3
+valgrind: clean all
+	@echo "$(BOLD_YELLOW)[VALGRIND MODE]$(DEF_COLOR)"
+	@valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./$(NAME) 3 2 1
 
 -include $(DEPS)
-.PHONY: all clean fclean re norm show info
+.PHONY: all clean fclean re norm show info debug valgrind
 .DEFAULT_GOAL := all
 
 # **************************************************************************** #

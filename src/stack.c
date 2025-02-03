@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 23:54:59 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/02/03 19:17:35 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/02/03 20:30:18 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,36 +65,4 @@ t_dnode	*init_dnode(int value)
 	new_dnode->prev = NULL;
 	new_dnode->next = NULL;
 	return (new_dnode);
-}
-
-void	print_stack(t_stack *stack)
-{
-	t_dnode	*current;
-
-	current = stack->head;
-	if (stack->size == 0)
-	{
-		ft_printf("Stack is empty\n");
-		return ;
-	}
-	while (current != NULL)
-	{
-		ft_printf("%d\n", current->value);
-		current = current->next;
-	}
-}
-
-void	free_stack(t_stack *stack)
-{
-	t_dnode	*current;
-	t_dnode	*next;
-
-	current = stack->head;
-	while (current != NULL)
-	{
-		next = current->next;
-		free(current);
-		current = next;
-	}
-	free(stack);
 }
