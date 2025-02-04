@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 16:17:14 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/02/03 19:59:58 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/02/04 00:10:20 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,13 @@ typedef struct s_stack
 	int				size;
 }					t_stack;
 
-void				sort(t_stack *a);
+void				sort(t_stack *a, t_stack *b);
 void				sort2(t_stack *a);
 void				sort3(t_stack *a);
-void				sort4(t_stack *a);
-void				sort5(t_stack *a);
+void				sort4(t_stack *a, t_stack *b);
+void				sort5(t_stack *a, t_stack *b);
+
+int					find_min_index(t_stack *stack);
 
 t_stack				*create_stack(char **args);
 t_stack				*init_stack(void);

@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 18:43:08 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/02/03 20:00:13 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/02/03 23:40:55 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,10 @@ void	print_stack(t_stack *stack)
 	}
 	while (current != NULL)
 	{
-		ft_printf("%d\n", current->value);
+		ft_printf("%d ", current->value);
 		current = current->next;
 	}
+	ft_printf("\n");
 }
 
 int	ft_strarray_len(char **strarray)

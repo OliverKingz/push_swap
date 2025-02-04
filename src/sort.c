@@ -6,22 +6,22 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 16:22:47 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/02/03 20:13:35 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/02/04 00:54:01 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	sort(t_stack *a)
+void	sort(t_stack *a, t_stack *b)
 {
 	if (a->size == 2)
 		sort2(a);
 	else if (a->size == 3)
 		sort3(a);
 	else if (a->size == 4)
-		sort4(a);
+		sort4(a, b);
 	else if (a->size == 5)
-		sort5(a);
+		sort5(a, b);
 }
 
 void	sort2(t_stack *a)
@@ -30,14 +30,23 @@ void	sort2(t_stack *a)
 		exe_print_op(a, NULL, "sa");
 }
 
-// This function sorts a stack of size 3 in ascending order
-// There are 6 possible cases to consider:
-// - 1 2 3 (already sorted)
-// - 1 3 2 (first case)
-// - 2 1 3
-// - 2 3 1
-// - 3 1 2
-// - 3 2 1 (last case)
+/**
+ * @brief Sorts a stack of size 3 in ascending order.
+ * @param a The stack to be sorted.
+ * @note There are 6 possible cases to consider:
+ * 
+ * - 1 2 3 (already sorted)
+
+ * - 1 3 2 (first case)
+ * 
+ * - 2 1 3
+ * 
+ * - 2 3 1
+ * 
+ * - 3 1 2
+ * 
+ * - 3 2 1 (last case)
+ */
 void	sort3(t_stack *a)
 {
 	int	first;
@@ -65,12 +74,39 @@ void	sort3(t_stack *a)
 	}
 }
 
-void	sort4(t_stack *a)
+void	sort4(t_stack *a, t_stack *b)
 {
-	(void)a;
+	while (find_min_index(a) != 0)
+	{
+		if (find_min_index(a) <= 2)
+			exe_print_op(a, NULL, "ra");
+		else
+			exe_print_op(a, NULL, "rra");
+	}
+	exe_print_op(a, b, "pb");
+	sort3(a);
+	exe_print_op(a, b, "pa");
 }
 
-void	sort5(t_stack *a)
+void	sort5(t_stack *a, t_stack *b)
 {
-	(void)a;
+	while (find_min_index(a) != 0)
+	{
+		if (find_min_index(a) <= 2)
+			exe_print_op(a, NULL, "ra");
+		else
+			exe_print_op(a, NULL, "rra");
+	}
+	exe_print_op(a, b, "pb");
+	while (find_min_index(a) != 0)
+	{
+		if (find_min_index(a) <= 2)
+			exe_print_op(a, NULL, "ra");
+		else
+			exe_print_op(a, NULL, "rra");
+	}
+	exe_print_op(a, b, "pb");
+	sort3(a);
+	exe_print_op(a, b, "pa");
+	exe_print_op(a, b, "pa");
 }
