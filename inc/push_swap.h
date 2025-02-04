@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 16:17:14 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/02/04 00:10:20 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/02/04 01:48:56 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ typedef struct s_stack
 	t_dnode			*tail;
 	int				size;
 }					t_stack;
+
+void				push_swap_usage(void);
 
 void				sort(t_stack *a, t_stack *b);
 void				sort2(t_stack *a);

@@ -6,11 +6,18 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 20:01:48 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/02/04 00:06:23 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/02/04 01:48:52 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	push_swap_usage(void)
+{
+	ft_putstr_fd("Usage: ./push_swap [numbers...]\n", 2);
+	ft_putstr_fd("Example 1: ./push_swap 42 -7 0 -42\n", 2);
+	ft_putstr_fd("Example 2: ARGS=\"42 -7 0 -42\"; ./push_swap $ARGS\n", 2);
+}
 
 int	main(int argc, char **argv)
 {
@@ -19,7 +26,7 @@ int	main(int argc, char **argv)
 	t_stack	*stack_b;
 
 	if (argc < 2)
-		(ft_putstr_fd("Usage: ./push_swap 42 -6 0\n", 2), exit(1));
+		(push_swap_usage(), exit(1));
 	args = ft_arg_to_strarray(argc, argv);
 	if (!args || !check_args_int(args) || !check_args_dup(args))
 		return (free_strarray(args), ft_err("Invalid arg"), 1);
