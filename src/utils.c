@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 18:43:08 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/02/03 23:40:55 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/02/04 16:13:48 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,10 @@ void	print_strarray(char **strarray)
 	i = 0;
 	while (strarray[i] != NULL)
 	{
-		ft_printf("%s\n", strarray[i]);
+		ft_printf("%s ", strarray[i]);
 		i++;
 	}
+	ft_printf("\n");
 }
 
 void	print_intarray(int *intarray, int size)
@@ -31,9 +32,10 @@ void	print_intarray(int *intarray, int size)
 	i = 0;
 	while (i < size)
 	{
-		ft_printf("%d\n", intarray[i]);
+		ft_printf("%d ", intarray[i]);
 		i++;
 	}
+	ft_printf("\n");
 }
 
 void	print_stack(t_stack *stack)
@@ -64,4 +66,27 @@ int	ft_strarray_len(char **strarray)
 		size++;
 	}
 	return (size);
+}
+
+int	ft_str_num_len(char *str_num)
+{
+	int	len;
+	int	i;
+
+	len = 0;
+	i = 0;
+	if (str_num[i] == '-' || str_num[i] == '+')
+	{
+		i++;
+	}
+	while (str_num[i] == '0')
+	{
+		i++;
+	}
+	while (str_num[i] >= '0' && str_num[i] <= '9')
+	{
+		len++;
+		i++;
+	}
+	return (len);
 }

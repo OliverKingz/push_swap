@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 16:39:08 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/02/02 20:26:02 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/02/04 16:16:11 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,14 +47,14 @@ int	*ft_strarray_to_intarray(char **str)
 	num_strs = 0;
 	while (str[num_strs] != NULL)
 		num_strs++;
-	int_array = (int *)malloc(num_strs * sizeof(int));
+	int_array = (int *)ft_calloc(num_strs, sizeof(int));
 	if (!int_array)
 		return (ft_err("Failed to malloc"), NULL);
 	i = 0;
 	while (i < num_strs)
 	{
 		value = ft_atol(str[i]);
-		if (value > INT_MAX || value < INT_MIN)
+		if (value > INT_MAX || value < INT_MIN || ft_str_num_len(str[i]) > 10)
 			return (free(int_array), ft_err("Int overflow/underflow"), NULL);
 		int_array[i] = (int) value;
 		i++;
@@ -73,7 +73,7 @@ long	*ft_strarray_to_longarray(char **str)
 	num_strs = 0;
 	while (str[num_strs] != NULL)
 		num_strs++;
-	long_array = (long *)malloc(num_strs * sizeof(long));
+	long_array = (long *)ft_calloc(num_strs, sizeof(long));
 	if (!long_array)
 		return (ft_err("Failed to malloc"), NULL);
 	i = 0;

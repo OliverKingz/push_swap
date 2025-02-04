@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 18:22:44 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/02/03 18:31:07 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/02/04 15:31:22 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ int	check_args_int(char **args)
 	{
 		if (!ft_issigned_nbr(args[i]))
 			return (free_strarray(args), ft_err("Arg is not valid number"), 0);
+		if (ft_str_num_len(args[i]) > 10)
+			return (free_strarray(args), ft_err("Arg is out of int range"), 0);
 		i++;
 	}
 	return (1);
@@ -77,5 +79,5 @@ int	check_stack_sorted(t_stack *a)
 		}
 		return (sorted);
 	}
-	return (ft_printf("Stack empty or with very few values"), 0);
+	return (ft_err("Stack empty or with very few values\n"), 0);
 }
