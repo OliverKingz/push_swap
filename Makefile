@@ -6,7 +6,7 @@
 #    By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/25 20:01:56 by ozamora-          #+#    #+#              #
-#    Updated: 2025/02/03 20:38:54 by ozamora-         ###   ########.fr        #
+#    Updated: 2025/02/04 01:33:58 by ozamora-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,9 +43,19 @@ LIBFT	:= $(LIBFT_DIR)libft.a
 CC		:= cc
 CFLAGS	:= -Wall -Wextra -Werror
 CFLAGS	+= -MMD -MP
-#CFLAGS	+= -g3 -fsanitize=address
 IFLAGS	:= -I$(INC_DIR) -I$(LIBFT_INC_DIR)
 LDFLAGS	:= -L$(LIBFT_DIR) -lft
+
+# DEBUG MODE
+ifeq ($(DEBUG),1)
+	CFLAGS += -g3 -fsanitize=address
+	LDFLAGS += -fsanitize=address
+endif
+
+# VALGRIND MODE
+ifeq ($(VALGRIND),1)
+	CFLAGS += -g3
+endif
 
 # **************************************************************************** #
 # COLOURS
@@ -108,12 +118,28 @@ fclean:
 re: fclean all
 
 # **************************************************************************** #
-# PERSONAL RULES
+# NORM AND DEBUG RULES
 
 # Rule to check if the files pass norminette
 norm:
 	@norminette $(SRCS) $(INCS)
 
+# Rule to compile object files from source files with debug flags
+debug:
+	@$(MAKE) -s DEBUG=1
+	@echo "$(BOLD_YELLOW)[DEBUG MODE]$(DEF_COLOR)"
+	@if [ ! -z "$(ARGS)" ]; then ./$(NAME) $(ARGS); fi
+
+# Rule to compile with valgrind debug flags
+valgrind:
+	@$(MAKE) -s VALGRIND=1
+	@echo "$(BOLD_YELLOW)[VALGRIND MODE]$(DEF_COLOR)"
+	@valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./$(NAME) $(ARGS)
+
+# **************************************************************************** #
+# ADDITIONAL RULES
+
+# Rule to show compilation and linking commands
 show:
 	@echo "$(BOLD_YELLOW)Compilation command:$(DEF_COLOR)\t"\
 		"$(CC) $(CFLAGS) $(IFLAGS) -c $(SRC_DIR)push_swap.c -o $(OBJ_DIR)push_swap.o"
@@ -121,6 +147,7 @@ show:
 		"$(CC) $(CFLAGS) $(IFLAGS) $(OBJS) -o $(NAME) $(LDFLAGS)"
 	@echo "$(BOLD_YELLOW)Cleaning command:$(DEF_COLOR)\t rm -rf $(OBJ_DIR)" $(NAME)
 
+# Rule to show all variables being used
 info:
 	@echo "$(BOLD_YELLOW)\nozamora's push_swap:$(DEF_COLOR)"
 	@echo "$(BOLD_BLUE)NAME: $(DEF_COLOR)$(NAME)"
@@ -146,19 +173,8 @@ info:
 	@echo "$(BOLD_BLUE)INCS: $(DEF_COLOR)$(INCS)"
 	@echo "$(BOLD_YELLOW)\nBonus:$(DEF_COLOR)"
 
-# Rule to compile object files from source files with debug flags
-debug: CFLAGS += -g3 -fsanitize=address
-debug: clean all
-	@echo "$(BOLD_YELLOW)[DEBUG MODE]$(DEF_COLOR)"
-
-# Rule to compile with valgrind debug flags
-valgrind: CFLAGS += -g3
-valgrind: clean all
-	@echo "$(BOLD_YELLOW)[VALGRIND MODE]$(DEF_COLOR)"
-	@valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./$(NAME) 3 2 1
-
 -include $(DEPS)
-.PHONY: all clean fclean re norm show info debug valgrind
+.PHONY: all clean fclean re norm debug valgrind show info
 .DEFAULT_GOAL := all
 
 # **************************************************************************** #
