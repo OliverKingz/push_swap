@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 16:39:08 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/02/04 16:16:11 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/02/04 16:24:35 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,8 @@ long	*ft_strarray_to_longarray(char **str)
 	i = 0;
 	while (i < num_strs)
 	{
+		if (ft_str_num_len(str[i]) > 19)
+			return (free(long_array), ft_err("Int overflow/underflow"), NULL);
 		long_array[i] = ft_atol(str[i]);
 		i++;
 	}
