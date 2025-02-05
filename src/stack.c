@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 23:54:59 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/02/04 16:08:48 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/02/05 20:46:04 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,29 +16,25 @@ t_stack	*create_stack(char **args)
 {
 	t_stack	*stack;
 	int		*args_int;
-	int		i;
+	int		*args_indexed;
+	int		size;
 
 	args_int = ft_strarray_to_intarray(args);
 	if (!args_int)
-	{
-		free_strarray(args);
-		return (ft_err("Failed to convert args to int array"), NULL);
-	}
+		return (free_strarray(args), ft_err("Failed args converstion"), NULL);
 	stack = init_stack();
 	if (!stack)
 	{
 		(free_strarray(args), free(args_int));
 		return (ft_err("Failed to init stack"), NULL);
 	}
-	i = ft_strarray_len(args) - 1;
-	while (i >= 0)
-	{
-		push(stack, args_int[i]);
-		i--;
-	}
-	free(args_int);
-	free_strarray(args);
-	return (stack);
+	size = ft_strarray_len(args);
+	args_indexed = index_intarray(args_int, size);
+	if (!args_indexed)
+		return (free_strarray(args), ft_err("Failed indexation"), NULL);
+	while (--size >= 0)
+		push(stack, args_indexed[size]);
+	return (free(args_indexed), free_strarray(args), stack);
 }
 
 t_stack	*init_stack(void)

@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 16:17:14 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/02/05 17:22:49 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/02/05 20:39:29 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,14 @@ void				sort3(t_stack *a);
 void				sort4(t_stack *a, t_stack *b);
 void				sort5(t_stack *a, t_stack *b);
 
-void				k_sort1(t_stack *a, t_stack *b, int length);
-void				k_sort2(t_stack *a, t_stack *b, int length);
+void				k_sort1(t_stack *a, t_stack *b, int size);
+void				k_sort2(t_stack *a, t_stack *b, int size);
 int					ft_sqrt(int n);
 int					rotation_count_tohead(t_dnode *stack, int index);
 
-int					find_min_index(t_stack *stack);
+int					find_min_i(t_stack *stack);
+
+int					*index_intarray(int *array, int size);
 
 t_stack				*create_stack(char **args);
 t_stack				*init_stack(void);

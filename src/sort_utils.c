@@ -6,13 +6,13 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 23:57:35 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/02/04 00:31:43 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/02/05 20:27:58 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	find_min_index(t_stack *stack)
+int	find_min_i(t_stack *stack)
 {
 	int		min_value;
 	t_dnode	*current;

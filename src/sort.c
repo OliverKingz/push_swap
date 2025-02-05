@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 16:22:47 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/02/05 17:26:33 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/02/05 20:27:55 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,9 +84,9 @@ void	sort3(t_stack *a)
 
 void	sort4(t_stack *a, t_stack *b)
 {
-	while (find_min_index(a) != 0)
+	while (find_min_i(a) != 0)
 	{
-		if (find_min_index(a) <= 2)
+		if (find_min_i(a) <= 2)
 			exe_print_op(a, NULL, "ra");
 		else
 			exe_print_op(a, NULL, "rra");
@@ -98,17 +98,17 @@ void	sort4(t_stack *a, t_stack *b)
 
 void	sort5(t_stack *a, t_stack *b)
 {
-	while (find_min_index(a) != 0)
+	while (find_min_i(a) != 0)
 	{
-		if (find_min_index(a) <= 2)
+		if (find_min_i(a) <= 2)
 			exe_print_op(a, NULL, "ra");
 		else
 			exe_print_op(a, NULL, "rra");
 	}
 	exe_print_op(a, b, "pb");
-	while (find_min_index(a) != 0)
+	while (find_min_i(a) != 0)
 	{
-		if (find_min_index(a) <= 2)
+		if (find_min_i(a) <= 2)
 			exe_print_op(a, NULL, "ra");
 		else
 			exe_print_op(a, NULL, "rra");

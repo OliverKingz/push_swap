@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 23:54:21 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/02/05 16:18:27 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/02/05 18:01:51 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,32 +20,19 @@
  */
 void	switch_a(t_stack *a)
 {
-	// t_dnode	*aux;
+	t_dnode	*first;
+	t_dnode	*second;
 
-	// if (a->size >= 2)
-	// {
-	// 	aux = a->head;
-	// 	a->head = a->head->next;
-	// 	aux->next = a->head->next;
-	// 	if (a->head->next != NULL)
-	// 		a->head->next->prev = aux;
-	// 	a->head->next = aux;
-	// 	a->head->prev = NULL;
-	// 	aux->prev = a->head;
-	// }
 	if (a->size < 2)
-		return;
-
-	t_dnode *first = a->head;
-	t_dnode *second = first->next;
-
+		return ;
+	first = a->head;
+	second = first->next;
 	first->next = second->next;
 	if (second->next)
 		second->next->prev = first;
 	second->prev = NULL;
 	second->next = first;
 	first->prev = second;
-
 	a->head = second;
 	if (a->size == 2)
 		a->tail = first;
@@ -59,19 +46,22 @@ void	switch_a(t_stack *a)
  */
 void	switch_b(t_stack *b)
 {
-	t_dnode	*aux;
+	t_dnode	*first;
+	t_dnode	*second;
 
-	if (b->size >= 2)
-	{
-		aux = b->head;
-		b->head = b->head->next;
-		aux->next = b->head->next;
-		if (b->head->next != NULL)
-			b->head->next->prev = aux;
-		b->head->next = aux;
-		b->head->prev = NULL;
-		aux->prev = b->head;
-	}
+	if (b->size < 2)
+		return ;
+	first = b->head;
+	second = first->next;
+	first->next = second->next;
+	if (second->next)
+		second->next->prev = first;
+	second->prev = NULL;
+	second->next = first;
+	first->prev = second;
+	b->head = second;
+	if (b->size == 2)
+		b->tail = first;
 }
 
 /**
