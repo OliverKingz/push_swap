@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 18:22:44 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/02/04 15:31:22 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/02/05 15:33:00 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,5 +79,5 @@ int	check_stack_sorted(t_stack *a)
 		}
 		return (sorted);
 	}
-	return (ft_err("Stack empty or with very few values\n"), 0);
+	return (0);
 }

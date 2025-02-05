@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 18:43:08 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/02/04 16:13:48 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/02/05 16:14:12 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,15 @@ void	print_intarray(int *intarray, int size)
 	ft_printf("\n");
 }
 
-void	print_stack(t_stack *stack)
+void	print_stack(t_stack *stack, char stack_name)
 {
 	t_dnode	*current;
 
 	current = stack->head;
+	ft_printf("%c: ", stack_name);
 	if (stack->size == 0)
 	{
-		ft_printf("Stack is empty\n");
+		ft_printf("printing empty stack\n");
 		return ;
 	}
 	while (current != NULL)

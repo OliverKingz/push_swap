@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 16:22:47 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/02/04 00:54:01 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/02/05 17:26:33 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,22 @@
 
 void	sort(t_stack *a, t_stack *b)
 {
-	if (a->size == 2)
+	int	size;
+
+	size = a->size;
+	if (size == 2)
 		sort2(a);
-	else if (a->size == 3)
+	else if (size == 3)
 		sort3(a);
-	else if (a->size == 4)
+	else if (size == 4)
 		sort4(a, b);
-	else if (a->size == 5)
+	else if (size == 5)
 		sort5(a, b);
+	else
+	{
+		k_sort1(a, b, size);
+		k_sort2(a, b, size);
+	}
 }
 
 void	sort2(t_stack *a)

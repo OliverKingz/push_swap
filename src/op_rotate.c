@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 23:54:32 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/02/03 20:46:49 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/02/05 16:22:39 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
  *
  * @param a The stack to rotate.
  */
-void	ra(t_stack *a)
+void	rotate_up_a(t_stack *a)
 {
 	t_dnode	*new_tail;
 	t_dnode	*new_head;
@@ -44,7 +44,7 @@ void	ra(t_stack *a)
  *
  * @param b The stack to rotate.
  */
-void	rb(t_stack *b)
+void	rotate_up_b(t_stack *b)
 {
 	t_dnode	*new_tail;
 	t_dnode	*new_head;
@@ -63,15 +63,15 @@ void	rb(t_stack *b)
 }
 
 /**
- * @brief Performs ra and rb at the same time.
+ * @brief Performs ra and rotate_up_b at the same time.
  *
  * Shifts all the elements of both stacks up by one position.
  *
  * @param a The first stack to rotate.
  * @param b The second stack to rotate.
  */
-void	rr(t_stack *a, t_stack *b)
+void	rotate_up_both(t_stack *a, t_stack *b)
 {
-	ra(a);
-	rb(b);
+	rotate_up_a(a);
+	rotate_up_b(b);
 }

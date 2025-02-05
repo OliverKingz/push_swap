@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 23:54:40 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/02/03 20:45:35 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/02/05 16:23:56 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
  *
  * @param a The stack to reverse rotate.
  */
-void	rra(t_stack *a)
+void	rotate_down_a(t_stack *a)
 {
 	t_dnode	*new_head;
 	t_dnode	*new_tail;
@@ -44,7 +44,7 @@ void	rra(t_stack *a)
  *
  * @param b The stack to reverse rotate.
  */
-void	rrb(t_stack *b)
+void	rotate_down_b(t_stack *b)
 {
 	t_dnode	*new_head;
 	t_dnode	*new_tail;
@@ -63,15 +63,15 @@ void	rrb(t_stack *b)
 }
 
 /**
- * @brief Performs rra and rrb at the same time.
+ * @brief Performs rotate_down_a and rotate_down_b at the same time.
  *
  * Shifts all elements of both stacks down one position.
  *
  * @param a The first stack to reverse rotate.
  * @param b The second stack to reverse rotate.
  */
-void	rrr(t_stack *a, t_stack *b)
+void	rotate_down_both(t_stack *a, t_stack *b)
 {
-	rra(a);
-	rrb(b);
+	rotate_down_a(a);
+	rotate_down_b(b);
 }

@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 16:17:14 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/02/04 15:31:58 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/02/05 17:22:49 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,11 @@ void				sort3(t_stack *a);
 void				sort4(t_stack *a, t_stack *b);
 void				sort5(t_stack *a, t_stack *b);
 
+void				k_sort1(t_stack *a, t_stack *b, int length);
+void				k_sort2(t_stack *a, t_stack *b, int length);
+int					ft_sqrt(int n);
+int					rotation_count_tohead(t_dnode *stack, int index);
+
 int					find_min_index(t_stack *stack);
 
 t_stack				*create_stack(char **args);
@@ -62,20 +67,20 @@ int					pop(t_stack *stack);
 void				exe_op(t_stack *a, t_stack *b, const char *operation);
 void				exe_print_op(t_stack *a, t_stack *b, const char *operation);
 
-void				sa(t_stack *a);
-void				sb(t_stack *b);
-void				ss(t_stack *a, t_stack *b);
+void				switch_a(t_stack *a);
+void				switch_b(t_stack *b);
+void				switch_both(t_stack *a, t_stack *b);
 
-void				pa(t_stack *a, t_stack *b);
-void				pb(t_stack *a, t_stack *b);
+void				push_bhead_toa(t_stack *a, t_stack *b);
+void				push_ahead_tob(t_stack *a, t_stack *b);
 
-void				ra(t_stack *a);
-void				rb(t_stack *b);
-void				rr(t_stack *a, t_stack *b);
+void				rotate_up_a(t_stack *a);
+void				rotate_up_b(t_stack *b);
+void				rotate_up_both(t_stack *a, t_stack *b);
 
-void				rra(t_stack *a);
-void				rrb(t_stack *b);
-void				rrr(t_stack *a, t_stack *b);
+void				rotate_down_a(t_stack *a);
+void				rotate_down_b(t_stack *b);
+void				rotate_down_both(t_stack *a, t_stack *b);
 
 char				**ft_arg_to_strarray(int argc, char **argv);
 int					*ft_strarray_to_intarray(char **str);
@@ -92,7 +97,7 @@ void				free_stacks(t_stack *a, t_stack *b);
 
 void				print_strarray(char **strarray);
 void				print_intarray(int *intarray, int size);
-void				print_stack(t_stack *stack);
+void				print_stack(t_stack *stack, char stack_name);
 int					ft_strarray_len(char **strarray);
 int					ft_str_num_len(char *str_num);
 

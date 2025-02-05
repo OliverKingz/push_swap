@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 01:33:46 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/02/04 16:03:04 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/02/05 16:23:56 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	pop(t_stack *stack)
 	int		value;
 
 	if (stack->size == 0)
-		return (free_stack(stack), ft_err("Stack is empty"), -1);
+		return (free_stack(stack), ft_err("Stack is empty in pop"), -1);
 	node_to_remove = stack->head;
 	value = node_to_remove->value;
 	stack->head = node_to_remove->next;
@@ -59,27 +59,27 @@ int	pop(t_stack *stack)
 void	exe_op(t_stack *a, t_stack *b, const char *operation)
 {
 	if (ft_strcmp(operation, "sa") == 0)
-		sa(a);
+		switch_a(a);
 	else if (ft_strcmp(operation, "sb") == 0)
-		sb(b);
+		switch_b(b);
 	else if (ft_strcmp(operation, "ss") == 0)
-		ss(a, b);
+		switch_both(a, b);
 	else if (ft_strcmp(operation, "pa") == 0)
-		pa(a, b);
+		push_bhead_toa(a, b);
 	else if (ft_strcmp(operation, "pb") == 0)
-		pb(a, b);
+		push_ahead_tob(a, b);
 	else if (ft_strcmp(operation, "ra") == 0)
-		ra(a);
+		rotate_up_a(a);
 	else if (ft_strcmp(operation, "rb") == 0)
-		rb(b);
+		rotate_up_b(b);
 	else if (ft_strcmp(operation, "rr") == 0)
-		rr(a, b);
+		rotate_up_both(a, b);
 	else if (ft_strcmp(operation, "rra") == 0)
-		rra(a);
+		rotate_down_a(a);
 	else if (ft_strcmp(operation, "rrb") == 0)
-		rrb(b);
+		rotate_down_b(b);
 	else if (ft_strcmp(operation, "rrr") == 0)
-		rrr(a, b);
+		rotate_down_both(a, b);
 	else
 		ft_err("Unkown operation");
 }

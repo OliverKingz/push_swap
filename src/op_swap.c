@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 23:54:21 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/02/03 20:51:07 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/02/05 16:18:27 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,21 +18,37 @@
  *
  * @param a Pointer to stack a.
  */
-void	sa(t_stack *a)
+void	switch_a(t_stack *a)
 {
-	t_dnode	*aux;
+	// t_dnode	*aux;
 
-	if (a->size >= 2)
-	{
-		aux = a->head;
-		a->head = a->head->next;
-		aux->next = a->head->next;
-		if (a->head->next != NULL)
-			a->head->next->prev = aux;
-		a->head->next = aux;
-		a->head->prev = NULL;
-		aux->prev = a->head;
-	}
+	// if (a->size >= 2)
+	// {
+	// 	aux = a->head;
+	// 	a->head = a->head->next;
+	// 	aux->next = a->head->next;
+	// 	if (a->head->next != NULL)
+	// 		a->head->next->prev = aux;
+	// 	a->head->next = aux;
+	// 	a->head->prev = NULL;
+	// 	aux->prev = a->head;
+	// }
+	if (a->size < 2)
+		return;
+
+	t_dnode *first = a->head;
+	t_dnode *second = first->next;
+
+	first->next = second->next;
+	if (second->next)
+		second->next->prev = first;
+	second->prev = NULL;
+	second->next = first;
+	first->prev = second;
+
+	a->head = second;
+	if (a->size == 2)
+		a->tail = first;
 }
 
 /**
@@ -41,7 +57,7 @@ void	sa(t_stack *a)
  *
  * @param b Pointer to stack b.
  */
-void	sb(t_stack *b)
+void	switch_b(t_stack *b)
 {
 	t_dnode	*aux;
 
@@ -63,8 +79,8 @@ void	sb(t_stack *b)
  * @param a Pointer to stack a.
  * @param b Pointer to stack b.
  */
-void	ss(t_stack *a, t_stack *b)
+void	switch_both(t_stack *a, t_stack *b)
 {
-	sa(a);
-	sb(b);
+	switch_a(a);
+	switch_b(b);
 }
