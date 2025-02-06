@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 16:17:14 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/02/05 20:39:29 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/02/06 09:59:24 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ int					rotation_count_tohead(t_dnode *stack, int index);
 int					find_min_i(t_stack *stack);
 
 int					*index_intarray(int *array, int size);
+void				ft_qsort(int *arr, size_t size);
 
 t_stack				*create_stack(char **args);
 t_stack				*init_stack(void);
