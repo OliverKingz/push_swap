@@ -6,11 +6,15 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 17:45:49 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/02/05 20:31:15 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/02/06 15:14:42 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+static int	rotation_count_tohead(t_dnode *stack, int index);
+void		k_sort1(t_stack *a, t_stack *b, int size);
+void		k_sort2(t_stack *a, t_stack *b, int size);
 
 void	k_sort1(t_stack *a, t_stack *b, int size)
 {
@@ -79,7 +83,7 @@ int	ft_sqrt(int n)
 	return (i - 1);
 }
 
-int	rotation_count_tohead(t_dnode *stack, int index)
+static int	rotation_count_tohead(t_dnode *stack, int index)
 {
 	int	counter;
 
@@ -92,4 +96,30 @@ int	rotation_count_tohead(t_dnode *stack, int index)
 		counter++;
 	}
 	return (-1);
+}
+
+int	find_min_i(t_stack *stack)
+{
+	int		min_value;
+	t_dnode	*current;
+	int		min_index;
+	int		i;
+
+	if (stack == NULL || stack->head == NULL)
+		return (ft_putstr_fd("Unable to find min index", 2), -1);
+	min_value = stack->head->value;
+	current = stack->head;
+	min_index = 0;
+	i = 0;
+	while (current != NULL)
+	{
+		if (current->value < min_value)
+		{
+			min_value = current->value;
+			min_index = i;
+		}
+		current = current->next;
+		i++;
+	}
+	return (min_index);
 }

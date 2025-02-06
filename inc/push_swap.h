@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 16:17:14 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/02/06 09:59:24 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/02/06 15:27:50 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,21 @@ typedef struct s_stack
 
 void				push_swap_usage(void);
 
+char				**ft_arg_to_strarray(int argc, char **argv);
+int					*ft_strarray_to_intarray(char **str);
+long				*ft_strarray_to_longarray(char **str);
+
+int					check_args_int(char **args);
+int					check_args_dup(char **args);
+int					check_stack_sorted(t_stack *a);
+
+t_stack				*create_stack(char **args);
+t_stack				*init_stack(void);
+t_dnode				*init_dnode(int value);
+
+int					*index_intarray(int *array, int size);
+void				ft_qsort_intarray(int *arr, size_t size);
+
 void				sort(t_stack *a, t_stack *b);
 void				sort2(t_stack *a);
 void				sort3(t_stack *a);
@@ -54,16 +69,7 @@ void				sort5(t_stack *a, t_stack *b);
 void				k_sort1(t_stack *a, t_stack *b, int size);
 void				k_sort2(t_stack *a, t_stack *b, int size);
 int					ft_sqrt(int n);
-int					rotation_count_tohead(t_dnode *stack, int index);
-
 int					find_min_i(t_stack *stack);
-
-int					*index_intarray(int *array, int size);
-void				ft_qsort(int *arr, size_t size);
-
-t_stack				*create_stack(char **args);
-t_stack				*init_stack(void);
-t_dnode				*init_dnode(int value);
 
 void				push(t_stack *stack, int value);
 int					pop(t_stack *stack);
@@ -84,14 +90,6 @@ void				rotate_up_both(t_stack *a, t_stack *b);
 void				rotate_down_a(t_stack *a);
 void				rotate_down_b(t_stack *b);
 void				rotate_down_both(t_stack *a, t_stack *b);
-
-char				**ft_arg_to_strarray(int argc, char **argv);
-int					*ft_strarray_to_intarray(char **str);
-long				*ft_strarray_to_longarray(char **str);
-
-int					check_args_int(char **args);
-int					check_args_dup(char **args);
-int					check_stack_sorted(t_stack *a);
 
 void				ft_err(const char *msg);
 void				free_strarray(char **strarray);

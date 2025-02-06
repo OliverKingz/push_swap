@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 01:33:46 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/02/05 16:23:56 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/02/06 15:17:43 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,8 @@ void	exe_op(t_stack *a, t_stack *b, const char *operation)
 		ft_err("Unkown operation");
 }
 
+//print_stack(stack_a, 'a');
+//print_stack(stack_b, 'b');
 void	exe_print_op(t_stack *a, t_stack *b, const char *operation)
 {
 	exe_op(a, b, operation);
