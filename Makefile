@@ -6,7 +6,7 @@
 #    By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/25 20:01:56 by ozamora-          #+#    #+#              #
-#    Updated: 2025/02/07 00:55:32 by ozamora-         ###   ########.fr        #
+#    Updated: 2025/02/07 02:31:24 by ozamora-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -144,23 +144,27 @@ norm:
 
 # Rule to compile object files from source files with debug flags
 debug:
-	# @$(MAKE) fclean > /dev/null
-	@$(MAKE) -s DEBUG=1
+	@$(MAKE) clean > /dev/null
 	@$(MAKE) bonus -s DEBUG=1
-	@echo "\n$(BOLD_YELLOW)[DEBUG MODE]$(DEF_COLOR)"
-	@if [ ! -z "$(ARGS)" ]; then ./$(NAME) $(ARGS); fi
-	@echo "\n$(BOLD_YELLOW)[DEBUG MODE FOR CHECKER]$(DEF_COLOR)"
-	@if [ ! -z "$(ARGS)" ]; then ./$(NAME) $(ARGS) | ./$(BONUS_NAME) $(ARGS); fi
+	@$(MAKE) -s DEBUG=1
+	@echo "$(BOLD_YELLOW)[DEBUG MODE]$(DEF_COLOR)"
+	-@if [ ! -z "$(ARGS)" ]; then ./$(NAME) $(ARGS); fi
+	@echo "\n$(BOLD_YELLOW)[DEBUG MODE WITH MY CHECKER]$(DEF_COLOR)"
+	-@if [ ! -z "$(ARGS)" ]; then ./$(NAME) $(ARGS) | ./$(BONUS_NAME) $(ARGS); fi
+	@echo "\n$(BOLD_YELLOW)[DEBUG MODE WITH OG CHECKER]$(DEF_COLOR)"
+	-@if [ ! -z "$(ARGS)" ]; then ./$(NAME) $(ARGS) | ./checker_linux $(ARGS); fi
 
 # Rule to compile with valgrind debug flags
 valgrind:
-	# @$(MAKE) fclean > /dev/null
-	@$(MAKE) -s VALGRIND=1
+	@$(MAKE) clean > /dev/null
 	@$(MAKE) bonus -s VALGRIND=1
-	@echo "\n$(BOLD_YELLOW)[VALGRIND MODE]$(DEF_COLOR)"
-	@valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./$(NAME) $(ARGS)
-	@echo "\n$(BOLD_YELLOW)[VALGRIND MODE FOR CHECKER]$(DEF_COLOR)"
-	@valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./$(NAME) $(ARGS) | ./$(BONUS_NAME) $(ARGS)
+	@$(MAKE) -s VALGRIND=1
+	@echo "$(BOLD_YELLOW)[VALGRIND MODE]$(DEF_COLOR)"
+	-@valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./$(NAME) $(ARGS)
+	@echo "\n$(BOLD_YELLOW)[VALGRIND MODE WITH MY CHECKER]$(DEF_COLOR)"
+	-@valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./$(NAME) $(ARGS) | ./$(BONUS_NAME) $(ARGS)
+	@echo "\n$(BOLD_YELLOW)[VALGRIND MODE WITH OG CHECKER]$(DEF_COLOR)"
+	-@valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./$(NAME) $(ARGS) | ./checker_linux $(ARGS)
 
 # **************************************************************************** #
 # ADDITIONAL RULES
