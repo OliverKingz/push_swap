@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 16:17:14 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/02/07 22:16:07 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/02/07 22:51:56 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,17 @@
 Explicitly allowed functions for push_swap, already included at the library
 # include <stdlib.h>  // To use memory allocation (malloc, free) and exit
 # include <unistd.h>  // To use system calls like read and write
-*/
 
-/*
 Functions used from libft:
 - ft_atol
+- ft_issigned_nbr
 - ft_strdup
 - ft_strjoin_char
-- ft_strcmp
+- ft_strncmp
+- ft_split
+- ft_calloc
+- ft_printf
+- ft_putstr_fd
 */
 
 typedef struct s_dnode
