@@ -6,7 +6,7 @@
 #    By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/25 20:01:56 by ozamora-          #+#    #+#              #
-#    Updated: 2025/02/07 02:31:24 by ozamora-         ###   ########.fr        #
+#    Updated: 2025/02/07 12:22:19 by ozamora-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,6 +57,8 @@ IFLAGS	:= -I$(INC_DIR) -I$(LIBFT_INC_DIR)
 LDFLAGS	:= -L$(LIBFT_DIR) -lft
 
 # DEBUG MODE
+BUILD_MODE_FILE := .build_mode
+
 ifeq ($(DEBUG),1)
 	CFLAGS += -g3 -fsanitize=address
 	LDFLAGS += -fsanitize=address
@@ -68,15 +70,15 @@ ifeq ($(VALGRIND),1)
 endif
 
 # **************************************************************************** #
-# COLOURS
+# COLOURS: BOLD RGBY
+BR	= \033[1;31m
+BG	= \033[1;32m
+BB	= \033[1;34m
+BY	= \033[1;33m
 
-BOLD_RED	= \033[1;31m
-BOLD_GREEN	= \033[1;32m
-BOLD_BLUE	= \033[1;34m
-BOLD_YELLOW	= \033[1;33m
-
-DEF_COLOR	= \033[0;39m
-CLEAR_LINE	= \033[2K
+# NO COLOR and CLEAR LINE
+NC	= \033[0;39m
+CL	= \033[2K
 
 # **************************************************************************** #
 # ESSENTIAL RULES
@@ -84,25 +86,24 @@ CLEAR_LINE	= \033[2K
 # Default rule to create the program
 all: libft $(NAME)
 
+# Rule to create the program
+$(NAME): $(OBJS) $(LIBFT)
+	@$(CC) $(CFLAGS) $(IFLAGS) $(OBJS) $(LDFLAGS) -o $(NAME)
+	@printf "%b" "$(CL) -> $(BB)[push_swap]:\t$(BG)Compilation success\t✅$(NC)\n"
+	@echo "─────────────────────────────────────────────────────$(BY)"
+	@echo "▗▄▄▖ ▗▖ ▗▖ ▗▄▄▖▗▖ ▗▖   ▗▄▄▖▗▖ ▗▖ ▗▄▖ ▗▄▄▖ ";
+	@echo "▐▌ ▐▌▐▌ ▐▌▐▌   ▐▌ ▐▌  ▐▌   ▐▌ ▐▌▐▌ ▐▌▐▌ ▐▌";
+	@echo "▐▛▀▘ ▐▌ ▐▌ ▝▀▚▖▐▛▀▜▌   ▝▀▚▖▐▌ ▐▌▐▛▀▜▌▐▛▀▘ ";
+	@echo "▐▌   ▝▚▄▞▘▗▄▄▞▘▐▌ ▐▌  ▗▄▄▞▘▐▙█▟▌▐▌ ▐▌▐▌ by ozamora-  \n";
+	@echo "$(NC)─────────────────────────────────────────────────────"
+
 # Rule to compile object files from source files
 $(OBJ_DIR):
 	@mkdir -p $(OBJ_DIR)
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c | $(OBJ_DIR)
 	@mkdir -p $(dir $@)
-	@printf "%b" "$(CLEAR_LINE)$(BOLD_BLUE)[ozamora-'s push_swap]:\t$(DEF_COLOR)$<\r"
+	@printf "%b" "$(CL) -> $(BB)[push_swap]:\t$(NC)$<\r"
 	@$(CC) $(CFLAGS) $(IFLAGS) -c $< -o $@
-
-# Rule to create the program
-$(NAME): $(OBJS) $(LIBFT)
-	@$(CC) $(CFLAGS) $(IFLAGS) $(OBJS) $(LDFLAGS) -o $(NAME) 
-	@printf "%b" "$(CLEAR_LINE)$(BOLD_BLUE)[ozamora-'s push_swap]:\t" \
-		"$(DEF_COLOR)$(BOLD_GREEN)COMPILED$(DEF_COLOR)"
-	@echo "                                          $(BOLD_YELLOW)";
-	@echo "▗▄▄▖ ▗▖ ▗▖ ▗▄▄▖▗▖ ▗▖   ▗▄▄▖▗▖ ▗▖ ▗▄▖ ▗▄▄▖ ";
-	@echo "▐▌ ▐▌▐▌ ▐▌▐▌   ▐▌ ▐▌  ▐▌   ▐▌ ▐▌▐▌ ▐▌▐▌ ▐▌";
-	@echo "▐▛▀▘ ▐▌ ▐▌ ▝▀▚▖▐▛▀▜▌   ▝▀▚▖▐▌ ▐▌▐▛▀▜▌▐▛▀▘ ";
-	@echo "▐▌   ▝▚▄▞▘▗▄▄▞▘▐▌ ▐▌  ▗▄▄▞▘▐▙█▟▌▐▌ ▐▌▐▌ by ozamora-  ";
-	@echo "                                          $(DEF_COLOR)";
 
 # Rule to make the library Libft
 libft: $(LIBFT)
@@ -112,17 +113,16 @@ $(LIBFT):
 # Rule to clean generated files
 clean:
 	@rm -rf $(OBJ_DIR)/*.o $(OBJ_DIR)/*.d $(OBJ_DIR)
+	@rm -f $(BUILD_MODE_FILE)
 	@$(MAKE) clean -sC $(LIBFT_DIR)
-	@printf "%b" "$(CLEAR_LINE)$(BOLD_BLUE)[ozamora-'s push_swap]:\t" \
-		"$(DEF_COLOR)$(BOLD_RED)OBJECTS CLEANED$(DEF_COLOR)\n"
+	@printf "%b" "$(CL) -> $(BB)[push_swap]:\t$(BG)Object files cleaned\t❎$(NC)\n"
 
 # Rule to clean generated files and the executablle
 fclean: 
 	@$(MAKE) clean > /dev/null
 	@$(MAKE) fclean -sC $(LIBFT_DIR)
 	@rm -rf $(NAME) $(BONUS_NAME)
-	@printf "%b" "$(CLEAR_LINE)$(BOLD_BLUE)[ozamora-'s push_swap]:\t" \
-		"$(DEF_COLOR)$(BOLD_RED)FULLY CLEANED$(DEF_COLOR)\n"
+	@printf "%b" "$(CL) -> $(BB)[push_swap]:\t$(BG)Executable cleaned\t❎$(NC)\n"
 
 # Rule to recompile from zero. 
 re: fclean all
@@ -132,8 +132,7 @@ re: fclean all
 bonus: libft $(BONUS_NAME)
 $(BONUS_NAME): $(OBJS_BONUS)
 	@$(CC) $(CFLAGS) $(IFLAGS) $(OBJS_BONUS) $(LDFLAGS) -o $(BONUS_NAME) 
-	@printf "%b" "$(CLEAR_LINE)$(BOLD_BLUE)[ozamora-'s checker]:\t" \
-		"$(DEF_COLOR)$(BOLD_GREEN)COMPILED$(DEF_COLOR)\n"
+	@printf "%b" "$(CL) -> $(BB)[checker]:\t\t$(BG)Compilation success\t✅$(NC)\n"
 
 # **************************************************************************** #
 # NORM AND DEBUG RULES
@@ -144,26 +143,33 @@ norm:
 
 # Rule to compile object files from source files with debug flags
 debug:
-	@$(MAKE) clean > /dev/null
+	@if [ ! -f $(BUILD_MODE_FILE) ] || ! grep -q "DEBUG=1" $(BUILD_MODE_FILE); \
+	then \
+		$(MAKE) clean -s; \
+	fi
+	@echo "DEBUG=1" > $(BUILD_MODE_FILE)
 	@$(MAKE) bonus -s DEBUG=1
 	@$(MAKE) -s DEBUG=1
-	@echo "$(BOLD_YELLOW)[DEBUG MODE]$(DEF_COLOR)"
+	@echo " -> $(BB)[Debug]:\t$(BG)Debug mode enabled\t🟦$(NC)"
 	-@if [ ! -z "$(ARGS)" ]; then ./$(NAME) $(ARGS); fi
-	@echo "\n$(BOLD_YELLOW)[DEBUG MODE WITH MY CHECKER]$(DEF_COLOR)"
+	@echo "\n -> $(BB)[Debug]:\t$(BG)Debug w/ my Checker\t🟦$(NC)"
 	-@if [ ! -z "$(ARGS)" ]; then ./$(NAME) $(ARGS) | ./$(BONUS_NAME) $(ARGS); fi
-	@echo "\n$(BOLD_YELLOW)[DEBUG MODE WITH OG CHECKER]$(DEF_COLOR)"
+	@echo "\n -> $(BB)[Debug]:\t$(BG)Debug w/ og Checker\t🟦$(NC)"
 	-@if [ ! -z "$(ARGS)" ]; then ./$(NAME) $(ARGS) | ./checker_linux $(ARGS); fi
 
 # Rule to compile with valgrind debug flags
 valgrind:
-	@$(MAKE) clean > /dev/null
+	@if [ ! -f $(BUILD_MODE_FILE) ] || ! grep -q "VALGRIND=1" $(BUILD_MODE_FILE); then \
+		$(MAKE) clean -s;\
+	fi
+	@echo "VALGRIND=1" > $(BUILD_MODE_FILE)
 	@$(MAKE) bonus -s VALGRIND=1
 	@$(MAKE) -s VALGRIND=1
-	@echo "$(BOLD_YELLOW)[VALGRIND MODE]$(DEF_COLOR)"
+	@echo " -> $(BB)[Valgrind]:\t$(BG)Valgrind mode enabled\t🟦$(NC)"
 	-@valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./$(NAME) $(ARGS)
-	@echo "\n$(BOLD_YELLOW)[VALGRIND MODE WITH MY CHECKER]$(DEF_COLOR)"
+	@echo "\n -> $(BB)[Valgrind]:\t$(BG)Valgrind with my Checker\t🟦$(NC)"
 	-@valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./$(NAME) $(ARGS) | ./$(BONUS_NAME) $(ARGS)
-	@echo "\n$(BOLD_YELLOW)[VALGRIND MODE WITH OG CHECKER]$(DEF_COLOR)"
+	@echo "\n -> $(BB)[Valgrind]:\t$(BG)Valgrind with og Checker\t🟦$(NC)"
 	-@valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./$(NAME) $(ARGS) | ./checker_linux $(ARGS)
 
 # **************************************************************************** #
@@ -171,37 +177,43 @@ valgrind:
 
 # Rule to show compilation and linking commands
 show:
-	@echo "$(BOLD_YELLOW)Compilation command:$(DEF_COLOR)\t"\
+	@echo "$(BY)Compilation command:$(NC)\t"\
 		"$(CC) $(CFLAGS) $(IFLAGS) -c $(SRC_DIR)push_swap.c -o $(OBJ_DIR)push_swap.o"
-	@echo "$(BOLD_YELLOW)Linking command:$(DEF_COLOR)\t"\
+	@echo "$(BY)Linking command:$(NC)\t"\
 		"$(CC) $(CFLAGS) $(IFLAGS) $(OBJS) -o $(NAME) $(LDFLAGS)"
-	@echo "$(BOLD_YELLOW)Cleaning command:$(DEF_COLOR)\t rm -rf $(OBJ_DIR)" $(NAME)
+	@echo "$(BY)Cleaning command:$(NC)\t rm -rf $(OBJ_DIR)" $(NAME)
 
 # Rule to show all variables being used
 info:
-	@echo "$(BOLD_YELLOW)\nozamora's push_swap:$(DEF_COLOR)"
-	@echo "$(BOLD_BLUE)NAME: $(DEF_COLOR)$(NAME)"
-	@echo "$(BOLD_BLUE)LIBFT: $(DEF_COLOR)$(LIBFT)"
-	@echo "$(BOLD_YELLOW)\nCompiler:$(DEF_COLOR)"
-	@echo "$(BOLD_BLUE)CC: $(DEF_COLOR)$(CC)"
-	@echo "$(BOLD_BLUE)CFLAGS: $(DEF_COLOR)$(CFLAGS)"
-	@echo "$(BOLD_BLUE)IFLAGS: $(DEF_COLOR)$(IFLAGS)"
-	@echo "$(BOLD_BLUE)LDFLAGS: $(DEF_COLOR)$(LDFLAGS)"
-	@echo "$(BOLD_YELLOW)\nDirectories:$(DEF_COLOR)"
-	@echo "$(BOLD_BLUE)SRC_DIR: $(DEF_COLOR)$(SRC_DIR)"
-	@echo "$(BOLD_BLUE)INC_DIR: $(DEF_COLOR)$(INC_DIR)"
-	@echo "$(BOLD_BLUE)OBJ_DIR: $(DEF_COLOR)$(OBJ_DIR)"
-	@echo "$(BOLD_BLUE)LIB_DIR: $(DEF_COLOR)$(LIB_DIR)"
-	@echo "$(BOLD_BLUE)LIBFT_DIR: $(DEF_COLOR)$(LIBFT_DIR)"
-	@echo "$(BOLD_BLUE)LIBFT_INC_DIR: $(DEF_COLOR)$(LIBFT_INC_DIR)"
-	@echo "$(BOLD_YELLOW)\nFiles:$(DEF_COLOR)"
-	@echo "$(BOLD_BLUE)SRC_FILES: $(DEF_COLOR)$(SRC_FILES)"
-	@echo "$(BOLD_BLUE)INC_FILES: $(DEF_COLOR)$(INC_FILES)"
-	@echo "$(BOLD_BLUE)SRCS: $(DEF_COLOR)$(SRCS)"
-	@echo "$(BOLD_BLUE)OBJS: $(DEF_COLOR)$(OBJS)"
-	@echo "$(BOLD_BLUE)DEPS: $(DEF_COLOR)$(DEPS)"
-	@echo "$(BOLD_BLUE)INCS: $(DEF_COLOR)$(INCS)"
-	@echo "$(BOLD_YELLOW)\nBonus:$(DEF_COLOR)"
+	@echo "$(BY)\nozamora's push_swap:$(NC)"
+	@echo "$(BB)NAME: $(NC)$(NAME)"
+	@echo "$(BB)LIBFT: $(NC)$(LIBFT)"
+	@echo "$(BY)\nCompiler:$(NC)"
+	@echo "$(BB)CC: $(NC)$(CC)"
+	@echo "$(BB)CFLAGS: $(NC)$(CFLAGS)"
+	@echo "$(BB)IFLAGS: $(NC)$(IFLAGS)"
+	@echo "$(BB)LDFLAGS: $(NC)$(LDFLAGS)"
+	@echo "$(BY)\nDirectories:$(NC)"
+	@echo "$(BB)SRC_DIR: $(NC)$(SRC_DIR)"
+	@echo "$(BB)INC_DIR: $(NC)$(INC_DIR)"
+	@echo "$(BB)OBJ_DIR: $(NC)$(OBJ_DIR)"
+	@echo "$(BB)LIB_DIR: $(NC)$(LIB_DIR)"
+	@echo "$(BB)LIBFT_DIR: $(NC)$(LIBFT_DIR)"
+	@echo "$(BB)LIBFT_INC_DIR: $(NC)$(LIBFT_INC_DIR)"
+	@echo "$(BY)\nFiles:$(NC)"
+	@echo "$(BB)SRC_FILES: $(NC)$(SRC_FILES)"
+	@echo "$(BB)INC_FILES: $(NC)$(INC_FILES)"
+	@echo "$(BB)SRCS: $(NC)$(SRCS)"
+	@echo "$(BB)OBJS: $(NC)$(OBJS)"
+	@echo "$(BB)DEPS: $(NC)$(DEPS)"
+	@echo "$(BB)INCS: $(NC)$(INCS)"
+	@echo "$(BY)\nBonus:$(NC)"
+	@echo "$(BB)BONUS_NAME: $(NC)$(BONUS_NAME)"
+	@echo "$(BB)SRC_BONUS_FILES: $(NC)$(SRC_BONUS_FILES)"
+	@echo "$(BB)SRCS_BONUS: $(NC)$(SRCS_BONUS)"
+	@echo "$(BB)OBJS_BONUS: $(NC)$(OBJS_BONUS)"
+	@echo "$(BB)DEPS_BONUS: $(NC)$(DEPS_BONUS)"
+
 
 -include $(DEPS) $(DEPS_BONUS)
 .PHONY: all clean fclean re bonus norm debug valgrind show info
