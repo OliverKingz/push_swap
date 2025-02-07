@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 17:45:49 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/02/06 15:14:42 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/02/07 22:13:12 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	k_sort1(t_stack *a, t_stack *b, int size)
 	int	range;
 
 	i = 0;
-	range = ft_sqrt(size) * 14 / 10;
+	range = my_sqrt(size) * 14 / 10;
 	while (a->head != NULL)
 	{
 		if (a->head->value <= i)
@@ -68,7 +68,7 @@ void	k_sort2(t_stack *a, t_stack *b, int size)
 	}
 }
 
-int	ft_sqrt(int n)
+int	my_sqrt(int n)
 {
 	int	i;
 	int	result;

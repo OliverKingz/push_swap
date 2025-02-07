@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 18:43:08 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/02/05 16:14:12 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/02/07 22:12:53 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	print_stack(t_stack *stack, char stack_name)
 	ft_printf("\n");
 }
 
-int	ft_strarray_len(char **strarray)
+int	my_strarray_len(char **strarray)
 {
 	int	size;
 
@@ -69,7 +69,7 @@ int	ft_strarray_len(char **strarray)
 	return (size);
 }
 
-int	ft_str_num_len(char *str_num)
+int	my_str_num_len(char *str_num)
 {
 	int	len;
 	int	i;

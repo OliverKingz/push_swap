@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 18:22:44 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/02/07 21:30:03 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/02/07 22:13:35 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	check_args_int(char **args)
 	{
 		if (!ft_issigned_nbr(args[i]))
 			return (0);
-		if (ft_str_num_len(args[i]) > 10)
+		if (my_str_num_len(args[i]) > 10)
 			return (0);
 		i++;
 	}
@@ -39,10 +39,10 @@ int	check_args_dup(char **args)
 
 	if (args == NULL || *args == NULL)
 		return (0);
-	args_int = ft_strarray_to_intarray(args);
+	args_int = my_strarray_to_intarray(args);
 	if (args_int == NULL)
 		return (0);
-	arg_len = ft_strarray_len(args);
+	arg_len = my_strarray_len(args);
 	i = 0;
 	while (i < arg_len)
 	{

@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 01:33:46 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/02/07 18:33:02 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/02/07 22:12:01 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	push(t_stack *stack, int value)
 	if (!new)
 	{
 		free_stack(stack);
-		ft_err("Failed to initialize the node");
+		my_err("Failed to initialize the node");
 		return ;
 	}
 	new->next = stack->head;
@@ -43,7 +43,7 @@ int	pop(t_stack *stack)
 	int		value;
 
 	if (stack->size == 0)
-		return (free_stack(stack), ft_err("Stack is empty in pop"), -1);
+		return (free_stack(stack), my_err("Stack is empty in pop"), -1);
 	node_to_remove = stack->head;
 	value = node_to_remove->value;
 	stack->head = node_to_remove->next;
@@ -81,7 +81,7 @@ void	exe_op(t_stack *a, t_stack *b, char *op)
 	else if (!(ft_strncmp(op, "rr", 2)) || !(ft_strncmp(op, "rr\n", 3)))
 		rotate_up_both(a, b);
 	else
-		(free(op), free_stacks(a, b), ft_err("Unkown operation"));
+		(free(op), free_stacks(a, b), my_err("Unkown operation"));
 }
 
 //print_stack(stack_a, 'a');

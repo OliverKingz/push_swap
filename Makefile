@@ -6,7 +6,7 @@
 #    By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/25 20:01:56 by ozamora-          #+#    #+#              #
-#    Updated: 2025/02/07 18:36:14 by ozamora-         ###   ########.fr        #
+#    Updated: 2025/02/07 21:59:45 by ozamora-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -123,7 +123,7 @@ fclean:
 	@$(MAKE) clean > /dev/null
 	@$(MAKE) fclean -sC $(LIBFT_DIR)
 	@rm -rf $(NAME) $(BONUS_NAME)
-	@printf "%b" "$(CL) -> $(BW)[push_swap]:\t$(BG)Executable cleaned\t❎$(NC)\n"
+	@printf "%b" "$(CL) -> $(BW)[push_swap]:\t$(BG)Exe and objects cleaned\t❎$(NC)\n"
 
 # Rule to recompile from zero. 
 re: fclean all
