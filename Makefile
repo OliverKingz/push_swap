@@ -6,7 +6,7 @@
 #    By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/25 20:01:56 by ozamora-          #+#    #+#              #
-#    Updated: 2025/02/07 12:54:58 by ozamora-         ###   ########.fr        #
+#    Updated: 2025/02/07 18:22:07 by ozamora-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -70,11 +70,12 @@ ifeq ($(VALGRIND),1)
 endif
 
 # **************************************************************************** #
-# COLOURS: BOLD RGBY
+# COLOURS: BOLD RGBYW
 BR	= \033[1;31m
 BG	= \033[1;32m
 BB	= \033[1;34m
 BY	= \033[1;33m
+BW	= \033[1;37m
 
 # NO COLOR and CLEAR LINE
 NC	= \033[0;39m
@@ -89,20 +90,20 @@ all: libft $(NAME)
 # Rule to create the program
 $(NAME): $(OBJS) $(LIBFT)
 	@$(CC) $(CFLAGS) $(IFLAGS) $(OBJS) $(LDFLAGS) -o $(NAME)
-	@printf "%b" "$(CL) -> $(BB)[push_swap]:\t$(BG)Compilation success\t✅$(NC)\n"
+	@printf "%b" "$(CL) -> $(BW)[push_swap]:\t$(BG)Compilation success\t✅$(NC)\n"
 	@echo "─────────────────────────────────────────────────────$(BY)"
 	@echo "▗▄▄▖ ▗▖ ▗▖ ▗▄▄▖▗▖ ▗▖   ▗▄▄▖▗▖ ▗▖ ▗▄▖ ▗▄▄▖ ";
 	@echo "▐▌ ▐▌▐▌ ▐▌▐▌   ▐▌ ▐▌  ▐▌   ▐▌ ▐▌▐▌ ▐▌▐▌ ▐▌";
 	@echo "▐▛▀▘ ▐▌ ▐▌ ▝▀▚▖▐▛▀▜▌   ▝▀▚▖▐▌ ▐▌▐▛▀▜▌▐▛▀▘ ";
-	@echo "▐▌   ▝▚▄▞▘▗▄▄▞▘▐▌ ▐▌  ▗▄▄▞▘▐▙█▟▌▐▌ ▐▌▐▌ by ozamora-  \n";
-	@echo "$(NC)─────────────────────────────────────────────────────"
+	@echo "▐▌   ▝▚▄▞▘▗▄▄▞▘▐▌ ▐▌  ▗▄▄▞▘▐▙█▟▌▐▌ ▐▌▐▌ by ozamora-$(NC)";
+	@echo "\n─────────────────────────────────────────────────────"
 
 # Rule to compile object files from source files
 $(OBJ_DIR):
 	@mkdir -p $(OBJ_DIR)
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c | $(OBJ_DIR)
 	@mkdir -p $(dir $@)
-	@printf "%b" "$(CL) -> $(BB)[push_swap]:\t$(NC)$<\r"
+	@printf "%b" "$(CL) -> $(BW)[push_swap]:\t$(NC)$<\r"
 	@$(CC) $(CFLAGS) $(IFLAGS) -c $< -o $@
 
 # Rule to make the library Libft
@@ -115,24 +116,25 @@ clean:
 	@rm -rf $(OBJ_DIR)/*.o $(OBJ_DIR)/*.d $(OBJ_DIR)
 	@rm -f $(BUILD_MODE_FILE)
 	@$(MAKE) clean -sC $(LIBFT_DIR)
-	@printf "%b" "$(CL) -> $(BB)[push_swap]:\t$(BG)Object files cleaned\t❎$(NC)\n"
+	@printf "%b" "$(CL) -> $(BW)[push_swap]:\t$(BG)Object files cleaned\t❎$(NC)\n"
 
 # Rule to clean generated files and the executablle
 fclean: 
 	@$(MAKE) clean > /dev/null
 	@$(MAKE) fclean -sC $(LIBFT_DIR)
 	@rm -rf $(NAME) $(BONUS_NAME)
-	@printf "%b" "$(CL) -> $(BB)[push_swap]:\t$(BG)Executable cleaned\t❎$(NC)\n"
+	@printf "%b" "$(CL) -> $(BW)[push_swap]:\t$(BG)Executable cleaned\t❎$(NC)\n"
 
 # Rule to recompile from zero. 
 re: fclean all
 
 # **************************************************************************** #
 # CHECKER / BONUS RULES
+
 bonus: libft $(BONUS_NAME)
 $(BONUS_NAME): $(OBJS_BONUS)
 	@$(CC) $(CFLAGS) $(IFLAGS) $(OBJS_BONUS) $(LDFLAGS) -o $(BONUS_NAME) 
-	@printf "%b" "$(CL) -> $(BB)[checker]:\t\t$(BG)Compilation success\t✅$(NC)\n"
+	@printf "%b" "$(CL) -> $(BW)[checker]:\t\t$(BG)Compilation success\t✅$(NC)\n"
 
 # **************************************************************************** #
 # NORM AND DEBUG RULES
@@ -149,11 +151,11 @@ debug:
 	@echo "DEBUG=1" > $(BUILD_MODE_FILE)
 	@$(MAKE) bonus -s DEBUG=1
 	@$(MAKE) -s DEBUG=1
-	@echo " -> $(BB)[Debug]:\t$(BG)Debug mode enabled\t🟦$(NC)"
+	@echo " -> $(BW)[Debug]:\t\t$(BB)Debug mode enabled\t☑️$(NC)"
 	-@if [ ! -z "$(ARGS)" ]; then ./$(NAME) $(ARGS); fi
-	@echo " -> $(BB)[Debug]:\t$(BG)Debug w/ my Checker\t🟦$(NC)"
+	@echo " -> $(BW)[Debug]:\t\t$(BB)Debug w/ my Checker\t🟦$(NC)"
 	-@if [ ! -z "$(ARGS)" ]; then ./$(NAME) $(ARGS) | ./$(BONUS_NAME) $(ARGS); fi
-	@echo " -> $(BB)[Debug]:\t$(BG)Debug w/ og Checker\t🟦$(NC)"
+	@echo " -> $(BW)[Debug]:\t\t$(BB)Debug w/ og Checker\t🟦$(NC)"
 	-@if [ ! -z "$(ARGS)" ]; then ./$(NAME) $(ARGS) | ./checker_linux $(ARGS); fi
 
 # Rule to compile with valgrind debug flags
@@ -164,11 +166,11 @@ valgrind:
 	@echo "VALGRIND=1" > $(BUILD_MODE_FILE)
 	@$(MAKE) bonus -s VALGRIND=1
 	@$(MAKE) -s VALGRIND=1
-	@echo " -> $(BB)[Valgrind]:\t$(BG)Valgrind mode enabled\t🟦$(NC)"
+	@echo " -> $(BW)[Valgrind]:\t\t$(BB)Valgrind mode enabled\t🟦$(NC)"
 	-@valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./$(NAME) $(ARGS)
-	@echo " -> $(BB)[Valgrind]:\t$(BG)Valgrind with my Checker\t🟦$(NC)"
+	@echo " -> $(BW)[Valgrind]:\t\t$(BB)Valgrind with my Checker\t🟦$(NC)"
 	-@valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./$(NAME) $(ARGS) | ./$(BONUS_NAME) $(ARGS)
-	@echo " -> $(BB)[Valgrind]:\t$(BG)Valgrind with og Checker\t🟦$(NC)"
+	@echo " -> $(BW)[Valgrind]:\t\t$(BB)Valgrind with og Checker\t🟦$(NC)"
 	-@valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./$(NAME) $(ARGS) | ./checker_linux $(ARGS)
 
 # **************************************************************************** #
@@ -212,7 +214,6 @@ info:
 	@echo "$(BB)SRCS_BONUS: $(NC)$(SRCS_BONUS)"
 	@echo "$(BB)OBJS_BONUS: $(NC)$(OBJS_BONUS)"
 	@echo "$(BB)DEPS_BONUS: $(NC)$(DEPS_BONUS)"
-
 
 -include $(DEPS) $(DEPS_BONUS)
 .PHONY: all clean fclean re bonus norm debug valgrind show info
