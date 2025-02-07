@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 16:07:37 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/02/07 18:24:27 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/02/07 21:33:50 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,6 @@ int	main(int argc, char **argv)
 	if (check_stack_sorted(stack_a) == 1 && stack_b->size == 0)
 		return (free_stacks(stack_a, stack_b), ft_printf("OK\n"), 0);
 	else
-		return (free_stacks(stack_a, stack_b), ft_err("Failed to sort"), 1);
+		return (free_stacks(stack_a, stack_b), ft_putstr_fd("KO\n", 2), 1);
 	return (free_stacks(stack_a, stack_b), 0);
 }

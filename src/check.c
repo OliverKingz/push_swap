@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 18:22:44 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/02/07 00:56:22 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/02/07 21:30:03 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,5 +78,7 @@ int	check_stack_sorted(t_stack *a)
 		}
 		return (sorted);
 	}
+	if (a->size == 1)
+		return (1);
 	return (0);
 }
