@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 16:17:14 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/02/06 15:27:50 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/02/07 18:33:14 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,8 @@ int					find_min_i(t_stack *stack);
 
 void				push(t_stack *stack, int value);
 int					pop(t_stack *stack);
-void				exe_op(t_stack *a, t_stack *b, const char *operation);
-void				exe_print_op(t_stack *a, t_stack *b, const char *operation);
+void				exe_op(t_stack *a, t_stack *b, char *operation);
+void				exe_print_op(t_stack *a, t_stack *b, char *operation);
 
 void				switch_a(t_stack *a);
 void				switch_b(t_stack *b);

@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 01:33:46 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/02/06 23:57:08 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/02/07 18:33:02 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	pop(t_stack *stack)
 	return (value);
 }
 
-void	exe_op(t_stack *a, t_stack *b, const char *op)
+void	exe_op(t_stack *a, t_stack *b, char *op)
 {
 	if (!(ft_strncmp(op, "sa", 2)) || !(ft_strncmp(op, "sa\n", 3)))
 		switch_a(a);
@@ -81,12 +81,12 @@ void	exe_op(t_stack *a, t_stack *b, const char *op)
 	else if (!(ft_strncmp(op, "rr", 2)) || !(ft_strncmp(op, "rr\n", 3)))
 		rotate_up_both(a, b);
 	else
-		(free_stacks(a, b), ft_err("Unkown operation"));
+		(free(op), free_stacks(a, b), ft_err("Unkown operation"));
 }
 
 //print_stack(stack_a, 'a');
 //print_stack(stack_b, 'b');
-void	exe_print_op(t_stack *a, t_stack *b, const char *operation)
+void	exe_print_op(t_stack *a, t_stack *b, char *operation)
 {
 	exe_op(a, b, operation);
 	ft_printf("%s\n", operation);

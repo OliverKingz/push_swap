@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 18:23:38 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/02/07 01:10:16 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/02/07 18:45:38 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,17 @@ void	free_strarray(char **strarray)
 {
 	int	i;
 
+	if (strarray == NULL)
+		return ;
 	i = 0;
 	while (strarray[i] != NULL)
 	{
 		free(strarray[i]);
+		strarray[i] = NULL;
 		i++;
 	}
 	free(strarray);
+	strarray = NULL;
 }
 
 void	free_stack(t_stack *stack)
@@ -52,6 +56,7 @@ void	free_stack(t_stack *stack)
 		current = next;
 	}
 	free(stack);
+	stack = NULL;
 }
 
 void	free_stacks(t_stack *a, t_stack *b)

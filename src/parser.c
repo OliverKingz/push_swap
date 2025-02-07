@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 16:39:08 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/02/07 01:06:55 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/02/07 18:39:49 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,19 +24,20 @@ char	**ft_arg_to_strarray(int argc, char **argv)
 	str = ft_strdup("");
 	if (!str)
 		return (NULL);
-	i = 1;
-	while (i < argc)
+	i = 0;
+	while (++i < argc)
 	{
+		if (argv[i][0] == '\0')
+			return (free(str), NULL);
 		aux = str;
 		str = ft_strjoin_char(aux, argv[i], ' ');
 		if (!str)
-			return (free(aux), NULL);
+			return (free(aux), aux = NULL, NULL);
 		free(aux);
-		i++;
 	}
 	str_array = ft_split(str, ' ');
 	if (!str_array)
-		return (free(str), NULL);
+		return (free(str), str = NULL, NULL);
 	return (free(str), str_array);
 }
 

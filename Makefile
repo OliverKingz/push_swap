@@ -6,7 +6,7 @@
 #    By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/25 20:01:56 by ozamora-          #+#    #+#              #
-#    Updated: 2025/02/07 18:22:07 by ozamora-         ###   ########.fr        #
+#    Updated: 2025/02/07 18:36:14 by ozamora-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -151,7 +151,7 @@ debug:
 	@echo "DEBUG=1" > $(BUILD_MODE_FILE)
 	@$(MAKE) bonus -s DEBUG=1
 	@$(MAKE) -s DEBUG=1
-	@echo " -> $(BW)[Debug]:\t\t$(BB)Debug mode enabled\t☑️$(NC)"
+	@echo " -> $(BW)[Debug]:\t\t$(BB)Debug mode enabled\t🟦$(NC)"
 	-@if [ ! -z "$(ARGS)" ]; then ./$(NAME) $(ARGS); fi
 	@echo " -> $(BW)[Debug]:\t\t$(BB)Debug w/ my Checker\t🟦$(NC)"
 	-@if [ ! -z "$(ARGS)" ]; then ./$(NAME) $(ARGS) | ./$(BONUS_NAME) $(ARGS); fi
