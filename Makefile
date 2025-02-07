@@ -6,7 +6,7 @@
 #    By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/25 20:01:56 by ozamora-          #+#    #+#              #
-#    Updated: 2025/02/07 12:22:19 by ozamora-         ###   ########.fr        #
+#    Updated: 2025/02/07 12:54:58 by ozamora-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -143,8 +143,7 @@ norm:
 
 # Rule to compile object files from source files with debug flags
 debug:
-	@if [ ! -f $(BUILD_MODE_FILE) ] || ! grep -q "DEBUG=1" $(BUILD_MODE_FILE); \
-	then \
+	@if [ ! -f $(BUILD_MODE_FILE) ] || ! grep -q "DEBUG=1" $(BUILD_MODE_FILE); then \
 		$(MAKE) clean -s; \
 	fi
 	@echo "DEBUG=1" > $(BUILD_MODE_FILE)
@@ -152,24 +151,24 @@ debug:
 	@$(MAKE) -s DEBUG=1
 	@echo " -> $(BB)[Debug]:\t$(BG)Debug mode enabled\t🟦$(NC)"
 	-@if [ ! -z "$(ARGS)" ]; then ./$(NAME) $(ARGS); fi
-	@echo "\n -> $(BB)[Debug]:\t$(BG)Debug w/ my Checker\t🟦$(NC)"
+	@echo " -> $(BB)[Debug]:\t$(BG)Debug w/ my Checker\t🟦$(NC)"
 	-@if [ ! -z "$(ARGS)" ]; then ./$(NAME) $(ARGS) | ./$(BONUS_NAME) $(ARGS); fi
-	@echo "\n -> $(BB)[Debug]:\t$(BG)Debug w/ og Checker\t🟦$(NC)"
+	@echo " -> $(BB)[Debug]:\t$(BG)Debug w/ og Checker\t🟦$(NC)"
 	-@if [ ! -z "$(ARGS)" ]; then ./$(NAME) $(ARGS) | ./checker_linux $(ARGS); fi
 
 # Rule to compile with valgrind debug flags
 valgrind:
 	@if [ ! -f $(BUILD_MODE_FILE) ] || ! grep -q "VALGRIND=1" $(BUILD_MODE_FILE); then \
-		$(MAKE) clean -s;\
+		$(MAKE) clean -s; \
 	fi
 	@echo "VALGRIND=1" > $(BUILD_MODE_FILE)
 	@$(MAKE) bonus -s VALGRIND=1
 	@$(MAKE) -s VALGRIND=1
 	@echo " -> $(BB)[Valgrind]:\t$(BG)Valgrind mode enabled\t🟦$(NC)"
 	-@valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./$(NAME) $(ARGS)
-	@echo "\n -> $(BB)[Valgrind]:\t$(BG)Valgrind with my Checker\t🟦$(NC)"
+	@echo " -> $(BB)[Valgrind]:\t$(BG)Valgrind with my Checker\t🟦$(NC)"
 	-@valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./$(NAME) $(ARGS) | ./$(BONUS_NAME) $(ARGS)
-	@echo "\n -> $(BB)[Valgrind]:\t$(BG)Valgrind with og Checker\t🟦$(NC)"
+	@echo " -> $(BB)[Valgrind]:\t$(BG)Valgrind with og Checker\t🟦$(NC)"
 	-@valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./$(NAME) $(ARGS) | ./checker_linux $(ARGS)
 
 # **************************************************************************** #
