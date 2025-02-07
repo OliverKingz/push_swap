@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 16:17:14 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/02/07 22:51:56 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/02/07 22:54:07 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ void				sort5(t_stack *a, t_stack *b);
 
 void				k_sort1(t_stack *a, t_stack *b, int size);
 void				k_sort2(t_stack *a, t_stack *b, int size);
-int					my_sqrt(int n);
 int					find_min_i(t_stack *stack);
 
 void				push(t_stack *stack, int value);

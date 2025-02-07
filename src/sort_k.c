@@ -6,13 +6,14 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 17:45:49 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/02/07 22:13:12 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/02/07 22:54:19 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 static int	rotation_count_tohead(t_dnode *stack, int index);
+static int	my_sqrt(int n);
 void		k_sort1(t_stack *a, t_stack *b, int size);
 void		k_sort2(t_stack *a, t_stack *b, int size);
 
@@ -68,7 +69,7 @@ void	k_sort2(t_stack *a, t_stack *b, int size)
 	}
 }
 
-int	my_sqrt(int n)
+static int	my_sqrt(int n)
 {
 	int	i;
 	int	result;
