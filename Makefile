@@ -6,7 +6,7 @@
 #    By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/25 20:01:56 by ozamora-          #+#    #+#              #
-#    Updated: 2025/02/04 01:33:58 by ozamora-         ###   ########.fr        #
+#    Updated: 2025/02/07 00:55:32 by ozamora-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,22 +21,32 @@ LIBFT_INC_DIR	:= $(LIBFT_DIR)inc/
 
 # **************************************************************************** #
 # FILES
-SRC_FILES	:= $(wildcard $(SRC_DIR)*.c)
+#SRC_FILES	:= $(wildcard $(SRC_DIR)*.c)
+SRC_COMMON_FILES	:=	parser check stack utils exit \
+						op_push op_rev_rotate op_rotate op_swap op_utils \
+						sort_q 
+SRC_FILES			:= 	push_swap sort sort_k $(SRC_COMMON_FILES)
+SRC_BONUS_FILES		:= 	checker_bonus $(SRC_COMMON_FILES)
 
 # INCLUDE FILES
 INC_FILES	:= push_swap
 
 # GENERAL FILES
-SRCS	:= $(SRC_FILES)
+SRCS	:= $(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
 OBJS	:= $(SRCS:$(SRC_DIR)%.c=$(OBJ_DIR)%.o)
 DEPS	:= $(SRCS:$(SRC_DIR)%.c=$(OBJ_DIR)%.d)
 INCS	:= $(addprefix $(INC_DIR), $(addsuffix .h, $(INC_FILES)))
 INCS	+= $(LIBFT_INC_DIR)libft.h
 
+SRCS_BONUS	:= $(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_BONUS_FILES)))
+OBJS_BONUS	:= $(SRCS_BONUS:$(SRC_DIR)%.c=$(OBJ_DIR)%.o)
+DEPS_BONUS	:= $(SRCS_BONUS:$(SRC_DIR)%.c=$(OBJ_DIR)%.d)
+
 # **************************************************************************** #
 # PROJECT
-NAME	:= push_swap
-LIBFT	:= $(LIBFT_DIR)libft.a
+NAME		:= push_swap
+LIBFT		:= $(LIBFT_DIR)libft.a
+BONUS_NAME	:= checker
 
 # **************************************************************************** #
 # COMPILER
@@ -101,7 +111,7 @@ $(LIBFT):
 
 # Rule to clean generated files
 clean:
-	@rm -rf $(OBJ_DIR)/*.o $(OBJ_DIR)/*.d
+	@rm -rf $(OBJ_DIR)/*.o $(OBJ_DIR)/*.d $(OBJ_DIR)
 	@$(MAKE) clean -sC $(LIBFT_DIR)
 	@printf "%b" "$(CLEAR_LINE)$(BOLD_BLUE)[ozamora-'s push_swap]:\t" \
 		"$(DEF_COLOR)$(BOLD_RED)OBJECTS CLEANED$(DEF_COLOR)\n"
@@ -110,12 +120,20 @@ clean:
 fclean: 
 	@$(MAKE) clean > /dev/null
 	@$(MAKE) fclean -sC $(LIBFT_DIR)
-	@rm -rf $(NAME)
+	@rm -rf $(NAME) $(BONUS_NAME)
 	@printf "%b" "$(CLEAR_LINE)$(BOLD_BLUE)[ozamora-'s push_swap]:\t" \
 		"$(DEF_COLOR)$(BOLD_RED)FULLY CLEANED$(DEF_COLOR)\n"
 
 # Rule to recompile from zero. 
 re: fclean all
+
+# **************************************************************************** #
+# CHECKER / BONUS RULES
+bonus: libft $(BONUS_NAME)
+$(BONUS_NAME): $(OBJS_BONUS)
+	@$(CC) $(CFLAGS) $(IFLAGS) $(OBJS_BONUS) $(LDFLAGS) -o $(BONUS_NAME) 
+	@printf "%b" "$(CLEAR_LINE)$(BOLD_BLUE)[ozamora-'s checker]:\t" \
+		"$(DEF_COLOR)$(BOLD_GREEN)COMPILED$(DEF_COLOR)\n"
 
 # **************************************************************************** #
 # NORM AND DEBUG RULES
@@ -126,15 +144,23 @@ norm:
 
 # Rule to compile object files from source files with debug flags
 debug:
+	# @$(MAKE) fclean > /dev/null
 	@$(MAKE) -s DEBUG=1
-	@echo "$(BOLD_YELLOW)[DEBUG MODE]$(DEF_COLOR)"
+	@$(MAKE) bonus -s DEBUG=1
+	@echo "\n$(BOLD_YELLOW)[DEBUG MODE]$(DEF_COLOR)"
 	@if [ ! -z "$(ARGS)" ]; then ./$(NAME) $(ARGS); fi
+	@echo "\n$(BOLD_YELLOW)[DEBUG MODE FOR CHECKER]$(DEF_COLOR)"
+	@if [ ! -z "$(ARGS)" ]; then ./$(NAME) $(ARGS) | ./$(BONUS_NAME) $(ARGS); fi
 
 # Rule to compile with valgrind debug flags
 valgrind:
+	# @$(MAKE) fclean > /dev/null
 	@$(MAKE) -s VALGRIND=1
-	@echo "$(BOLD_YELLOW)[VALGRIND MODE]$(DEF_COLOR)"
+	@$(MAKE) bonus -s VALGRIND=1
+	@echo "\n$(BOLD_YELLOW)[VALGRIND MODE]$(DEF_COLOR)"
 	@valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./$(NAME) $(ARGS)
+	@echo "\n$(BOLD_YELLOW)[VALGRIND MODE FOR CHECKER]$(DEF_COLOR)"
+	@valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./$(NAME) $(ARGS) | ./$(BONUS_NAME) $(ARGS)
 
 # **************************************************************************** #
 # ADDITIONAL RULES
@@ -173,8 +199,8 @@ info:
 	@echo "$(BOLD_BLUE)INCS: $(DEF_COLOR)$(INCS)"
 	@echo "$(BOLD_YELLOW)\nBonus:$(DEF_COLOR)"
 
--include $(DEPS)
-.PHONY: all clean fclean re norm debug valgrind show info
+-include $(DEPS) $(DEPS_BONUS)
+.PHONY: all clean fclean re bonus norm debug valgrind show info
 .DEFAULT_GOAL := all
 
 # **************************************************************************** #

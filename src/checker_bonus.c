@@ -1,22 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   checker_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/25 20:01:48 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/02/07 00:51:49 by ozamora-         ###   ########.fr       */
+/*   Created: 2025/02/06 16:07:37 by ozamora-          #+#    #+#             */
+/*   Updated: 2025/02/07 00:50:58 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	push_swap_usage(void)
+static void	read_and_exe_operations(t_stack *a, t_stack *b)
 {
-	ft_putstr_fd("Usage: ./push_swap [numbers...]\n", 2);
-	ft_putstr_fd("Example 1: ./push_swap 42 -7 0 -42\n", 2);
-	ft_putstr_fd("Example 2: ARGS=\"42 -7 0 -42\"; ./push_swap $ARGS\n", 2);
+	char	*operation;
+
+	while (1)
+	{
+		operation = get_next_line(0);
+		if (operation == NULL || operation[0] == '\n')
+			break ;
+		exe_op(a, b, operation);
+		free(operation);
+	}
+	free(operation);
 }
 
 int	main(int argc, char **argv)
@@ -33,9 +41,11 @@ int	main(int argc, char **argv)
 	stack_a = create_stack(args);
 	stack_b = init_stack();
 	if (check_stack_sorted(stack_a) == 1)
-		return (free_stacks(stack_a, stack_b), 0);
-	sort(stack_a, stack_b);
-	if (check_stack_sorted(stack_a) == 0)
+		return (free_stacks(stack_a, stack_b), ft_printf("OK\n"), 0);
+	read_and_exe_operations(stack_a, stack_b);
+	if (check_stack_sorted(stack_a) == 1)
+		return (free_stacks(stack_a, stack_b), ft_printf("OK\n"), 0);
+	else
 		return (free_stacks(stack_a, stack_b), ft_err("Failed to sort"), 1);
 	return (free_stacks(stack_a, stack_b), 0);
 }

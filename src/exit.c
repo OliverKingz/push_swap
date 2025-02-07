@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 18:23:38 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/02/04 00:37:33 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/02/07 01:10:16 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	ft_err(const char *msg)
 {
 	ft_putstr_fd("Error\n", 2);
+	msg = NULL;
 	if (msg)
 	{
 		ft_putstr_fd((char *)msg, 2);

@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 01:33:46 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/02/06 15:17:43 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/02/06 23:57:08 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,32 +56,32 @@ int	pop(t_stack *stack)
 	return (value);
 }
 
-void	exe_op(t_stack *a, t_stack *b, const char *operation)
+void	exe_op(t_stack *a, t_stack *b, const char *op)
 {
-	if (ft_strcmp(operation, "sa") == 0)
+	if (!(ft_strncmp(op, "sa", 2)) || !(ft_strncmp(op, "sa\n", 3)))
 		switch_a(a);
-	else if (ft_strcmp(operation, "sb") == 0)
+	else if (!(ft_strncmp(op, "sb", 2)) || !(ft_strncmp(op, "sb\n", 3)))
 		switch_b(b);
-	else if (ft_strcmp(operation, "ss") == 0)
+	else if (!(ft_strncmp(op, "ss", 2)) || !(ft_strncmp(op, "ss\n", 3)))
 		switch_both(a, b);
-	else if (ft_strcmp(operation, "pa") == 0)
+	else if (!(ft_strncmp(op, "pa", 2)) || !(ft_strncmp(op, "pa\n", 3)))
 		push_bhead_toa(a, b);
-	else if (ft_strcmp(operation, "pb") == 0)
+	else if (!(ft_strncmp(op, "pb", 2)) || !(ft_strncmp(op, "pb\n", 3)))
 		push_ahead_tob(a, b);
-	else if (ft_strcmp(operation, "ra") == 0)
-		rotate_up_a(a);
-	else if (ft_strcmp(operation, "rb") == 0)
-		rotate_up_b(b);
-	else if (ft_strcmp(operation, "rr") == 0)
-		rotate_up_both(a, b);
-	else if (ft_strcmp(operation, "rra") == 0)
+	else if (!(ft_strncmp(op, "rra", 3)) || !(ft_strncmp(op, "rra\n", 4)))
 		rotate_down_a(a);
-	else if (ft_strcmp(operation, "rrb") == 0)
+	else if (!(ft_strncmp(op, "rrb", 3)) || !(ft_strncmp(op, "rrb\n", 4)))
 		rotate_down_b(b);
-	else if (ft_strcmp(operation, "rrr") == 0)
+	else if (!(ft_strncmp(op, "rrr", 3)) || !(ft_strncmp(op, "rrr\n", 4)))
 		rotate_down_both(a, b);
+	else if (!(ft_strncmp(op, "ra", 2)) || !(ft_strncmp(op, "ra\n", 3)))
+		rotate_up_a(a);
+	else if (!(ft_strncmp(op, "rb", 2)) || !(ft_strncmp(op, "rb\n", 3)))
+		rotate_up_b(b);
+	else if (!(ft_strncmp(op, "rr", 2)) || !(ft_strncmp(op, "rr\n", 3)))
+		rotate_up_both(a, b);
 	else
-		ft_err("Unkown operation");
+		(free_stacks(a, b), ft_err("Unkown operation"));
 }
 
 //print_stack(stack_a, 'a');
