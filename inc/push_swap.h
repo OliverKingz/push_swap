@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 16:17:14 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/02/07 22:54:07 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/02/08 16:47:46 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,6 @@ typedef struct s_stack
 	t_dnode			*tail;
 	int				size;
 }					t_stack;
-
-void				push_swap_usage(void);
 
 char				**my_arg_to_strarray(int argc, char **argv);
 int					*my_strarray_to_intarray(char **str);

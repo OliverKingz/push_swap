@@ -6,18 +6,11 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 20:01:48 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/02/07 22:13:28 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/02/08 16:48:21 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void	push_swap_usage(void)
-{
-	ft_putstr_fd("Usage: ./push_swap [numbers...]\n", 2);
-	ft_putstr_fd("Example 1: ./push_swap 42 -7 0 -42\n", 2);
-	ft_putstr_fd("Example 2: ARGS=\"42 -7 0 -42\"; ./push_swap $ARGS\n", 2);
-}
 
 int	main(int argc, char **argv)
 {

@@ -6,7 +6,7 @@
 #    By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/25 20:01:56 by ozamora-          #+#    #+#              #
-#    Updated: 2025/02/07 21:59:45 by ozamora-         ###   ########.fr        #
+#    Updated: 2025/02/08 16:49:35 by ozamora-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,6 @@ LIBFT_INC_DIR	:= $(LIBFT_DIR)inc/
 
 # **************************************************************************** #
 # FILES
-#SRC_FILES	:= $(wildcard $(SRC_DIR)*.c)
 SRC_COMMON_FILES	:=	parser check stack utils exit \
 						op_push op_rev_rotate op_rotate op_swap op_utils \
 						sort_q 
@@ -174,49 +173,9 @@ valgrind:
 	-@valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./$(NAME) $(ARGS) | ./checker_linux $(ARGS)
 
 # **************************************************************************** #
-# ADDITIONAL RULES
-
-# Rule to show compilation and linking commands
-show:
-	@echo "$(BY)Compilation command:$(NC)\t"\
-		"$(CC) $(CFLAGS) $(IFLAGS) -c $(SRC_DIR)push_swap.c -o $(OBJ_DIR)push_swap.o"
-	@echo "$(BY)Linking command:$(NC)\t"\
-		"$(CC) $(CFLAGS) $(IFLAGS) $(OBJS) -o $(NAME) $(LDFLAGS)"
-	@echo "$(BY)Cleaning command:$(NC)\t rm -rf $(OBJ_DIR)" $(NAME)
-
-# Rule to show all variables being used
-info:
-	@echo "$(BY)\nozamora's push_swap:$(NC)"
-	@echo "$(BB)NAME: $(NC)$(NAME)"
-	@echo "$(BB)LIBFT: $(NC)$(LIBFT)"
-	@echo "$(BY)\nCompiler:$(NC)"
-	@echo "$(BB)CC: $(NC)$(CC)"
-	@echo "$(BB)CFLAGS: $(NC)$(CFLAGS)"
-	@echo "$(BB)IFLAGS: $(NC)$(IFLAGS)"
-	@echo "$(BB)LDFLAGS: $(NC)$(LDFLAGS)"
-	@echo "$(BY)\nDirectories:$(NC)"
-	@echo "$(BB)SRC_DIR: $(NC)$(SRC_DIR)"
-	@echo "$(BB)INC_DIR: $(NC)$(INC_DIR)"
-	@echo "$(BB)OBJ_DIR: $(NC)$(OBJ_DIR)"
-	@echo "$(BB)LIB_DIR: $(NC)$(LIB_DIR)"
-	@echo "$(BB)LIBFT_DIR: $(NC)$(LIBFT_DIR)"
-	@echo "$(BB)LIBFT_INC_DIR: $(NC)$(LIBFT_INC_DIR)"
-	@echo "$(BY)\nFiles:$(NC)"
-	@echo "$(BB)SRC_FILES: $(NC)$(SRC_FILES)"
-	@echo "$(BB)INC_FILES: $(NC)$(INC_FILES)"
-	@echo "$(BB)SRCS: $(NC)$(SRCS)"
-	@echo "$(BB)OBJS: $(NC)$(OBJS)"
-	@echo "$(BB)DEPS: $(NC)$(DEPS)"
-	@echo "$(BB)INCS: $(NC)$(INCS)"
-	@echo "$(BY)\nBonus:$(NC)"
-	@echo "$(BB)BONUS_NAME: $(NC)$(BONUS_NAME)"
-	@echo "$(BB)SRC_BONUS_FILES: $(NC)$(SRC_BONUS_FILES)"
-	@echo "$(BB)SRCS_BONUS: $(NC)$(SRCS_BONUS)"
-	@echo "$(BB)OBJS_BONUS: $(NC)$(OBJS_BONUS)"
-	@echo "$(BB)DEPS_BONUS: $(NC)$(DEPS_BONUS)"
 
 -include $(DEPS) $(DEPS_BONUS)
-.PHONY: all clean fclean re bonus norm debug valgrind show info
+.PHONY: all clean fclean re bonus norm debug valgrind
 .DEFAULT_GOAL := all
 
 # **************************************************************************** #
