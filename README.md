@@ -2,14 +2,14 @@
 [42-Cursus] A sorting algorithm project where you must sort data on a stack using a limited set of instructions in the fewest moves possible.  
 This project is designed to enhance skills in **sorting algorithm design**, **stack manipulation**, and **C programming**.
 
+![Example push_swapk](assets/push_swap_ksort.gif)
+
 Keywords: 
 - Sorting algorithms  
 - Stack manipulation  
 - C programming
 - Algorithm optimization  
 - Complexity analysis
-
-![Example push_swapk](assets/push_swap_ksort.gif)
 
 ---
 
