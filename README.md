@@ -7,7 +7,9 @@ Keywords:
 - Stack manipulation  
 - C programming
 - Algorithm optimization  
-- Complexity analysis  
+- Complexity analysis
+
+![Example push_swapk](assets/push_swap_ksort.gif)
 
 ---
 
