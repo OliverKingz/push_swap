@@ -172,33 +172,39 @@ Permutation Sort Phase
 - Time complexity: O(n²)
 
 ### K-Sort Algorithm
-Used for 6+ numbers, this algorithm efficiently sorts large datasets. It is a custom sorting algorithm for push_swap that requires indexed data to optimize comparisons and movements. This indexed approach:
-- Converts original values to sequential positions (1,2,3...)
-- Eliminates negative numbers complexity
-- Simplifies range calculations and comparisons
+Used for 6+ numbers, this algorithm efficiently sorts large datasets. It is a custom sorting algorithm for **push_swap** that requires indexed data to optimize comparisons and movements. This indexed approach:  
+- Converts original values to sequential positions (1, 2, 3...)  
+- Eliminates the complexity of handling negative numbers  
+- Simplifies range calculations and comparisons  
 
-**Stack Operations**:
- - Stack A: holds initial numbers and final sorted result
- - Stack B: used as temporary storage for sorted chunks
- - Numbers pushed to B in organized segments
+**Stack Operations**
+- **Stack A**: Holds the initial numbers and the final sorted result.  
+- **Stack B**: Used as temporary storage for segmented chunks of numbers.  
+- **Chunk Strategy**: Numbers are pushed to Stack B in chunks based on a calculated range.  
 
-**Sorting Strategy**:
-1. **K_Sort1 (Push Phase)**:
-  - Uses calculated ranges for efficient transfers
-  - Numbers within chunk range pushed to B
-  - Larger numbers kept in A for later chunks
-  - Stack B maintains rough sorted order
+**K-Pattern in Stack B**
+During the push phase (`k_sort1`), smaller numbers are pushed to Stack B and rotated to the bottom (`rb`), while larger numbers remain at the top. This causes **Stack B to form a K-pattern**:
+- **Top and bottom of Stack B** contain larger numbers.  
+- **Middle of Stack B** holds smaller numbers from earlier ranges.  
 
-2. **K_Sort2 (Return Phase)**:
-  - Returns numbers from B to A in sorted order
-  - Uses rotation operations for optimization
-  - Optimizes rotations and pushes
-  - Builds final sorted sequence
+**Sorting Strategy**
+1. **K_Sort1 (Push Phase)**  
+   - Uses a range-based strategy to determine which numbers to push to Stack B.  
+   - Numbers smaller than the current target (`i`) are pushed and rotated to the bottom of Stack B.  
+   - Numbers within the current range (`i < value <= i + range`) are pushed to Stack B without rotation.  
+   - Larger numbers are skipped and rotated in Stack A for later processing.  
+   - Stack B maintains a partially organized structure, with the K-pattern emerging from the rotation of smaller values.  
 
-**Performance**:
- - Time Complexity: O(n log n)
- - Optimized for minimal operations
- - Efficient for large datasets
+2. **K_Sort2 (Return Phase)**  
+   - Returns numbers from Stack B to Stack A in sorted order.  
+   - Calculates the most efficient rotations to bring the target value to the top of Stack B.  
+   - Optimally performs rotations (`rb` or `rrb`) before pushing back to Stack A.  
+   - Builds the final sorted sequence in Stack A.  
+
+**Performance**
+- **Time Complexity**: O(n log n)  
+- **Optimized Operations**: Minimizes the number of moves for large datasets.  
+- Efficient and scalable for sorting indexed data.  
 
 ---
 
