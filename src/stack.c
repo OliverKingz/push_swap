@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 23:54:59 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/02/10 17:12:04 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/02/10 17:16:58 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ t_stack	*create_stack(char **args)
 	args_indexed = index_intarray(args_int, size);
 	if (!args_indexed)
 	{
-		(free_strarray(args), free(args_int));
+		(free_strarray(args), free(args_int), free_stack(stack);
 		return (my_err("Failed indexation"), NULL);
 	}
 	while (--size >= 0)
