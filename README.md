@@ -126,10 +126,85 @@ The **checker** program is a bonus feature that validates whether the instructio
 | `./push_swap 3 2 1 9999999999999999999999999999999999` | Extremely large number (outside `int` range).                                   | `Error`                                                                            |
 
 ---
+## Sorting Algorithms
+
+### Quick Sort (Indexing)
+Before sorting, numbers are indexed using a replica of C's qsort() function to assign relative positions. This simplifies operations by working with sequential indexes (1,2,3...) instead of arbitrary values, while maintaining the original number relationships.
+
+**Divide and Conquer**: Partitions array using a pivot element
+ - Elements > pivot move to right partition
+ - Elements < pivot move to left partition
+
+**Recursive Process**: Each partition is sorted independently
+
+**Implementation**: Used to convert input numbers into sequential indexes
+ - Example: [7, 2, 8, 1] → [3, 2, 4, 1]
+
+**Performance**:
+ - Average time complexity: O(n log n)
+ - Efficient for large datasets
+ - In-place sorting
+
+### Simple Comparison and Swap
+Used for 2 numbers:
+- Direct comparison between elements
+- Single swap if needed (sa)
+- Time complexity: O(1)
+
+### Permutation Sort
+Used for 3 numbers:
+- Implements 5 possible permutations (6 total - 1 sorted)
+- Pre-calculated optimal move sequences
+- Maximum 2 moves needed
+- Time complexity: O(1)
+
+### Selection and Permutation Sort
+Used for 4 and 5 numbers:
+
+Selection Phase
+- Iteratively finds minimum value
+- Pushes minimum to stack B
+- Repeats once for 4 numbers, twice for 5
+
+Permutation Sort Phase
+- Sorts remaining 3 numbers using permutation sort
+- Returns minimum values from Stack B in order
+- Time complexity: O(n²)
+
+### K-Sort Algorithm
+Used for 6+ numbers, this algorithm efficiently sorts large datasets. It is a custom sorting algorithm for push_swap that requires indexed data to optimize comparisons and movements. This indexed approach:
+- Converts original values to sequential positions (1,2,3...)
+- Eliminates negative numbers complexity
+- Simplifies range calculations and comparisons
+
+**Stack Operations**:
+ - Stack A: holds initial numbers and final sorted result
+ - Stack B: used as temporary storage for sorted chunks
+ - Numbers pushed to B in organized segments
+
+**Sorting Strategy**:
+1. **K_Sort1 (Push Phase)**:
+  - Uses calculated ranges for efficient transfers
+  - Numbers within chunk range pushed to B
+  - Larger numbers kept in A for later chunks
+  - Stack B maintains rough sorted order
+
+2. **K_Sort2 (Return Phase)**:
+  - Returns numbers from B to A in sorted order
+  - Uses rotation operations for optimization
+  - Optimizes rotations and pushes
+  - Builds final sorted sequence
+
+**Performance**:
+ - Time Complexity: O(n log n)
+ - Optimized for minimal operations
+ - Efficient for large datasets
+
+---
 
 ## What I Learned  
 This project was a great opportunity to deepen my understanding of:  
-- **Sorting Algorithms**: Implementing and comparing different algorithms like **quicksort**, **insertion sort**, and **merge sort**.  
+- **Sorting Algorithms**: Implementing and comparing different algorithms like **quicksort**, **permutation sort**, and **selection sort**.  
 - **Algorithm Complexity**: Analyzing the time and space complexity of different approaches.  
 - **Data Structures**: Using stacks and linked lists to manipulate data efficiently.  
 - **Optimization**: Reducing the number of operations to achieve the desired result.  
