@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 20:01:48 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/02/07 22:13:28 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/02/10 17:14:40 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ int	main(int argc, char **argv)
 	t_stack	*stack_a;
 	t_stack	*stack_b;
 
-	if (argc < 2)
-		my_err("");
+	if (argc <= 2)
+		return (0);
 	args = my_arg_to_strarray(argc, argv);
 	if (!args || !check_args_int(args) || !check_args_dup(args))
 		return (free_strarray(args), my_err("Invalid arg: dup or not int"), 1);
