@@ -91,16 +91,25 @@ These benchmarks ensure that your algorithm is efficient and optimized for large
 
 ## Example Usage
 
-| **Input Command**                 | **Description**                                      | **Expected Output**                                  |
-| --------------------------------- | ---------------------------------------------------- | ---------------------------------------------------- |
-| `./push_swap 3 2 1`               | Sorts three numbers in descending order.             | `sa`, `rra` (or similar minimal operations).         |
-| `./push_swap 1 5 2 4 3`           | Sorts five numbers in random order.                  | A sequence of operations like `pb`, `ra`, `sa`, etc. |
-| `./push_swap -1 -5 -3 -4 -2`      | Sorts negative numbers.                              | A sequence of operations like `pb`, `ra`, `sa`, etc. |
-| `./push_swap "5 4" 3 2 1`         | Sorts a stack in reverse order.                      | A sequence of operations like `sa`, `pb`, `ra`, etc. |
-| `./push_swap "9 8 7 6 5 4 3 2 1"` | Sorts numbers provided as a single string.           | A sequence of operations like `sa`, `pb`, `ra`, etc. |
-| `./push_swap`                     | No input                                             | No output.                                           |
-| `./push_swap 42`                  | Single number (already sorted).                      | No output.                                           |
-| `./push_swap 1 2 3 4 5`           | No operations needed if the stack is already sorted. | No output.                                           |
+| **Input Command**                           | **Description**                                      | **Expected Output**                                  |
+| ------------------------------------------- | ---------------------------------------------------- | ---------------------------------------------------- |
+| `./push_swap 3 2 1`                         | Sorts three numbers in descending order.             | `sa`, `rra` (or similar minimal operations).         |
+| `./push_swap 1 5 2 4 3`                     | Sorts five numbers in random order.                  | A sequence of operations like `pb`, `ra`, `sa`, etc. |
+| `./push_swap -1 -5 -3 -4 -2`                | Sorts negative numbers.                              | A sequence of operations like `pb`, `ra`, `sa`, etc. |
+| `./push_swap "5 4" 3 2 1`                   | Sorts a stack in reverse order.                      | A sequence of operations like `sa`, `pb`, `ra`, etc. |
+| `./push_swap "9 8 7 6 5 4 3 2 1"`           | Sorts numbers provided as a single string.           | A sequence of operations like `sa`, `pb`, `ra`, etc. |
+| `./push_swap`                               | No input                                             | No output.                                           |
+| `./push_swap 42`                            | Single number (already sorted).                      | No output.                                           |
+| `./push_swap 1 2 3 4 5`                     | No operations needed if the stack is already sorted. | No output.                                           |
+| `ARG="9 8 7 6 5 4 3 2 1"; ./push_swap $ARG` | Sorts numbers provided as a single string.           | A sequence of operations like `sa`, `pb`, `ra`, etc. |
+| `ARG="4 3 2 1"; ./push_swap 8 7 6 5 $ARG 0` | Sorts numbers provided as a single string.           | A sequence of operations like `sa`, `pb`, `ra`, etc. |
+
+| **Input Command**                                                                               | **Description**                                           |
+| ----------------------------------------------------------------------------------------------- | --------------------------------------------------------- |
+| `ARG=$(shuf <(seq -5000 5000) -n 100 \| tr '\n' ' '); ./push_swap $ARG \| ./checker_linux $ARG` | Test sorting 100 random numbers and validate correctness. |
+| `ARG=$(shuf <(seq -5000 5000) -n 500 \| tr '\n' ' '); ./push_swap $ARG \| ./checker_linux $ARG` | Test sorting 500 random numbers and validate correctness. |
+| `ARG=$(shuf <(seq -5000 5000) -n 100 \| tr '\n' ' '); ./push_swap $ARG \| wc -l`                | Count the number of moves to sort 100 random numbers.     |
+| `ARG=$(shuf <(seq -5000 5000) -n 500 \| tr '\n' ' '); ./push_swap $ARG \| wc -l`                | Count the number of moves to sort 500 random numbers.     |
 
 ## Bonus Usage
 
@@ -114,32 +123,6 @@ The **checker** program is a bonus feature that validates whether the instructio
    make bonus
    ```
 
-<<<<<<< Updated upstream
-| **Input Command**                                      | **Description**                                                                 | **Expected Output**                                                                          |
-|--------------------------------------------------------|---------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------|
-| `ARG="3 2 1"; ./push_swap $ARG \| ./checker $ARG`      | Combines `push_swap` and `checker` to validate sorting.                         | `OK` if the stack is sorted, `KO` otherwise.                                                 |
-| `ARG="1 2 3"; ./push_swap $ARG \| ./checker $ARG`      | Validates an already sorted stack.                                              | `OK` (no operations needed).                                                                 |
-| `./checker 3 2 1`                                      | Validates the operations generated by `push_swap`.                              | `OK` if the stack is sorted, `KO` otherwise.                                                 |
-| `./checker 1`                                          | Single number as input, it should wait for operations                           | `OK` as long as you don’t perform any operations, or Stack A operations only                 |
-| `./checker 1 2`                                        | Input is sorted                                                                 | `OK` as long as you don’t perform any operations, or if your operations don’t mess things up |
-
-## Error Handling
-
-| **Input Command**                                      | **Description**                                                                 | **Expected Output**                                                                 |
-|--------------------------------------------------------|---------------------------------------------------------------------------------|-------------------------------------------------------------------------------------|
-| `./push_swap 3 2 one`                                  | Invalid argument (non-integer).                                                 | `Error`                                                                            |
-| `./push_swap 3 2 3`                                    | Duplicate numbers.                                                              | `Error`                                                                            |
-| `./push_swap 2147483648 2 3`                           | Number outside the `int` range (too large).                                     | `Error`                                                                            |
-| `./push_swap -2147483649 2 3`                          | Number outside the `int` range (too small).                                     | `Error`                                                                            |
-| `./push_swap "3 2 1" 4 five`                           | Mixed valid and invalid arguments.                                              | `Error`                                                                            |
-| `./push_swap "3 2 1" "4 5 six"`                        | Invalid argument in a multi-string input.                                       | `Error`                                                                            |
-| `./push_swap 3 2 1 +-2`                                | Invalid format (misuse of `+` and `-`).                                         | `Error`                                                                            |
-| `./push_swap 3 2 1 9999999999999999999999999999999999` | Extremely large number (outside `int` range).                                   | `Error`                                                                            |
-| `./push_swap ""`                                       | Empty argument.                                                                 | `Error`                                                                            |
-| `./push_swap "     "`                                  | Argument filled with spaces.                                                    | `Error`                                                                            |
-| `./push_swap "     " 3 2 1 "    "`                     | Argument filled with spaces. You need to check each arg has a valid nbr         | `Error`                                                                            |
-| `./checker -`                                          | Invalid argument for checker                                                    | `Error`                                                                            |
-=======
 2. Run the checker with a list of integers:
 
    ```bash
@@ -169,7 +152,6 @@ The **checker** program is a bonus feature that validates whether the instructio
 | `./push_swap ""`                                       | Empty argument.                                                         | `Error`             |
 | `./push_swap "     "`                                  | Argument filled with spaces.                                            | `Error`             |
 | `./push_swap "     " 3 2 1 "    "`                     | Argument filled with spaces. You need to check each arg has a valid nbr | `Error`             |
->>>>>>> Stashed changes
 
 ---
 
@@ -288,7 +270,7 @@ This project was a great opportunity to deepen my understanding of:
 ## Author
 
 - **Name**: Oliver King Zamora
-- **GitHub**: [oliverkingz](https://github.com/oliverkingz)
+- **GitHub**: [OliverKingz](https://github.com/oliverkingz)
 - **42 Login**: ozamora-
 
 ---
