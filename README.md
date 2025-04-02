@@ -1,9 +1,22 @@
 # push_swap
 
-[42-Cursus] A sorting algorithm project where you must sort data on a stack using a limited set of instructions in the fewest moves possible.  
+<div align="right">
+
+[![GitHub stars](https://img.shields.io/github/stars/oliverkingz/push_swap?color=brightgreen)]()
+[![Visits Badge](https://badges.pufler.dev/visits/oliverkingz/push_swap)]()
+[![Created Badge](https://badges.pufler.dev/created/oliverkingz/push_swap)]()
+[![Updated Badge](https://badges.pufler.dev/updated/oliverkingz/push_swap)]()
+
+</div>
+
+[**42-Cursus**] A sorting algorithm project where you must sort data on a stack using a limited set of instructions in the fewest moves possible.  
 This project is designed to enhance skills in **sorting algorithm design**, **stack manipulation**, and **C programming**.
 
+<div align="center">
+
 ![Example push_swapk](assets/push_swap_ksort.gif)
+
+</div>
 
 Keywords:
 
@@ -12,6 +25,12 @@ Keywords:
 - C programming
 - Algorithm optimization
 - Complexity analysis
+
+<div align="right">
+  
+Made by: [![Contributors Display](https://badges.pufler.dev/contributors/oliverkingz/push_swap?size=30&padding=5&perRow=10&bots=true)](https://github.com/OliverKingz)
+
+</div>
 
 ---
 
@@ -269,9 +288,13 @@ This project was a great opportunity to deepen my understanding of:
 
 ## Author
 
-- **Name**: Oliver King Zamora
-- **GitHub**: [OliverKingz](https://github.com/oliverkingz)
-- **42 Login**: ozamora-
+<div align="center">
+
+| **Name**               | **GitHub Profile**                            | **42 Login** |
+| ---------------------- | --------------------------------------------- | ------------ |
+| **Oliver King Zamora** | [OliverKingz](https://github.com/oliverkingz) | **ozamora-** |
+
+</div>
 
 ---
 
